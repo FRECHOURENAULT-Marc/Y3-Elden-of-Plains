@@ -1,3 +1,4 @@
+using System.Threading;
 using NaughtyAttributes;
 using TMPro;
 using UnityEngine;
@@ -15,8 +16,9 @@ public class StaminaHandler : MonoBehaviour
     [ShowNonSerializedField] float _stamina;
     float _startRegenTimer;
     float _exhaustTimer;
+    CancellationTokenSource _cts;
 
-    bool IsExhaust
+    public bool IsExhaust
     {
         get => _exhaustTimer > 0;
     }    
@@ -34,12 +36,13 @@ public class StaminaHandler : MonoBehaviour
     {
         _maxStamina = 100;
         _staminaRegenRate = 10;
-        _startRegenTime = 3;
-        _exhaustTime = 5;
+        _startRegenTime = 5;
+        _exhaustTime = 10;
     }
     void Start()
     {
         _stamina = _maxStamina;
+        _cts = new CancellationTokenSource();
     }
 
     async void HandleExhaust()
@@ -50,11 +53,11 @@ public class StaminaHandler : MonoBehaviour
             return;
         _exhaustTimer = 0;
     }    
-    async void HandleStartRegen()
+    async void HandleStartRegen(CancellationToken cancel)
     {
         _startRegenTimer = 0.0001f;
-        await Awaitable.WaitForSecondsAsync(_startRegenTime, destroyCancellationToken);
-        if (destroyCancellationToken.IsCancellationRequested)
+        await Awaitable.WaitForSecondsAsync(_startRegenTime, cancel);
+        if (cancel.IsCancellationRequested)
             return;
         _startRegenTimer = 0;
     }
@@ -70,7 +73,11 @@ public class StaminaHandler : MonoBehaviour
             return;
         
         _stamina -= amount;
-        HandleStartRegen();
+        
+        _cts.Cancel();
+        _cts = new CancellationTokenSource();
+        _cts = CancellationTokenSource.CreateLinkedTokenSource(destroyCancellationToken, _cts.Token);
+        HandleStartRegen(_cts.Token);
         
         //Debug
         Debug.Log($"Stamina {amount} has been drained.");
