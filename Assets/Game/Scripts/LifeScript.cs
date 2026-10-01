@@ -54,7 +54,7 @@ public class LifeScript : MonoBehaviour
         Life -= damage;
         OnDamaged?.Invoke();
         
-        Debug.Log($"[LifeScript] Dealing {damage} damage");
+        Debug.Log($"Dealing {damage} damages to " + this.name);
     }
     
     public virtual void TryDamaging(float damage)

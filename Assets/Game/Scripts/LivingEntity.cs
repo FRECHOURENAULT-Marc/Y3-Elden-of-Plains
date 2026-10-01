@@ -1,4 +1,5 @@
 using System;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class LivingEntity : LifeScript
