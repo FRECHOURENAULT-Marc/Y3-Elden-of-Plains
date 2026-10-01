@@ -23,6 +23,7 @@ public class WeaponScript : MonoBehaviour
     [SerializeField] float _beforeDamageTime;
     [SerializeField] float _attackTime;
     [SerializeField] float _recoveryTime;
+    [SerializeField] float _weight;
     
     [Header("Events")]
     [SerializeField] UnityEvent _onStartCharging;
@@ -33,6 +34,11 @@ public class WeaponScript : MonoBehaviour
     
     private ATTACK_STATE _attackState = ATTACK_STATE.Ready;
 
+    public float Weight
+    {
+        get => _weight;
+    }
+    
     public bool IsCurrentlyAttacking =>
         _attackState == ATTACK_STATE.Charging ||
         _attackState == ATTACK_STATE.Attacking;
@@ -46,6 +52,7 @@ public class WeaponScript : MonoBehaviour
         _beforeDamageTime = 0.25f;
         _attackTime = 1.0f;
         _recoveryTime = 1.0f;
+        _weight = 20.0f;
     }
     
     void Start()
