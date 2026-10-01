@@ -283,6 +283,7 @@ GameObject:
   - component: {fileID: 37848259}
   - component: {fileID: 37848258}
   - component: {fileID: 37848257}
+  - component: {fileID: 37848262}
   - component: {fileID: 37848261}
   m_Layer: 3
   m_Name: Plane
@@ -417,6 +418,18 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: dbc92e2895064044d9b59a7c46925a50, type: 2}
   m_BuildHeightMesh: 0
+--- !u!114 &37848262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 37848256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b35358352d53d7a4e9b1172835040ec9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GroundTag
 --- !u!4 &49221667 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -5515783359193845756, guid: 8f279a2f0a360684f82584d0bc9f4772, type: 3}
@@ -510,8 +523,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 142064039}
+  - component: {fileID: 142064042}
   - component: {fileID: 142064041}
-  - component: {fileID: 142064040}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -535,55 +548,10 @@ Transform:
   - {fileID: 2132412753}
   - {fileID: 1228447353}
   - {fileID: 1988516986}
+  - {fileID: 406632045}
   - {fileID: 1516769709}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &142064040
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 142064038}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70fc81ec827bc3447a9aed1b46770ff5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  _input: {fileID: -2099379676528639254, guid: a68bca4fc6c74564687d909e9e5a94a5, type: 3}
-  _onStart:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2132412755}
-        m_TargetAssemblyTypeName: WeaponScript, Assembly-CSharp
-        m_MethodName: Attack
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1516769711}
-        m_TargetAssemblyTypeName: StaminaHandler, Assembly-CSharp
-        m_MethodName: DrainStamina
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 20
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  _onPerformed:
-    m_PersistentCalls:
-      m_Calls: []
-  _onCanceled:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &142064041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -598,6 +566,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LivingEntity
   _team: 0
   _maxLife: 5
+--- !u!54 &142064042
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142064038}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
 --- !u!1 &203844586
 GameObject:
   m_ObjectHideFlags: 0
@@ -1348,6 +1343,84 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 395000118}
   m_CullTransparentMesh: 1
+--- !u!1 &406632044
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 406632045}
+  - component: {fileID: 406632046}
+  - component: {fileID: 406632047}
+  m_Layer: 0
+  m_Name: Brain
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &406632045
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406632044}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 142064039}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &406632046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406632044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9384a02ffd7a0b4d83b6a720586e7b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  _parent: {fileID: 142064039}
+  _rb: {fileID: 142064042}
+  _camera: {fileID: 961739752}
+  _animator: {fileID: 359540836}
+  _stamina: {fileID: 1516769711}
+  _moveInput: {fileID: -1680190386980627800, guid: a68bca4fc6c74564687d909e9e5a94a5, type: 3}
+  _jumpInput: {fileID: -2099379676528639254, guid: a68bca4fc6c74564687d909e9e5a94a5, type: 3}
+  _attackInput: {fileID: 1120369429361536294, guid: a68bca4fc6c74564687d909e9e5a94a5, type: 3}
+  _speed: 10
+  _jumpForce: 300
+  _jumpEnergy: 20
+  _weapon: {fileID: 2132412755}
+--- !u!65 &406632047
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 406632044}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 0.25, z: 1}
+  m_Center: {x: 0, y: 0.125, z: 0}
 --- !u!1 &411477275
 GameObject:
   m_ObjectHideFlags: 0
@@ -2081,6 +2154,7 @@ MonoBehaviour:
   _beforeDamageTime: 1
   _attackTime: 1
   _recoveryTime: 1
+  _weight: 0
   _onStartCharging:
     m_PersistentCalls:
       m_Calls:
@@ -2724,8 +2798,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::StaminaHandler
   _maxStamina: 100
   _staminaRegenRate: 10
-  _startRegenTime: 3
-  _exhaustTime: 5
+  _startRegenTime: 5
+  _exhaustTime: 10
   _debugText: {fileID: 395000121}
 --- !u!1 &1698684298
 GameObject:
@@ -3188,22 +3262,11 @@ MonoBehaviour:
   _damage: 1
   _beforeDamageTime: 1
   _attackTime: 1
-  _recoveryTime: 1
+  _recoveryTime: 0
+  _weight: 20
   _onStartCharging:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 359540836}
-        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: SetTrigger
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Attack
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   _onStartAttacking:
     m_PersistentCalls:
       m_Calls: []

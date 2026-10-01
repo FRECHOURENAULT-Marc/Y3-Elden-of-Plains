@@ -8,16 +8,23 @@ using Object = System.Object;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("Dependances")] 
+    [Header("Dependencies")] 
+    [SerializeField] Transform _parent;
     [SerializeField] Rigidbody _rb;
     [SerializeField] Camera _camera;
+    [SerializeField] Animator _animator;
+    [SerializeField] StaminaHandler _stamina;
+        
+    [Header("Inputs")]
     [SerializeField] InputActionReference _moveInput;
     [SerializeField] InputActionReference _jumpInput;
-        
-    [Header("Conf")]
+    [SerializeField] InputActionReference _attackInput;
+    [Header("Configuration")]
     [SerializeField] float _speed;
     [SerializeField] float _jumpForce;
-    [SerializeField] float _mouseSensitivity;
+    [SerializeField] float _jumpEnergy;
+    /*[SerializeField]*/ float _mouseSensitivity;
+    [SerializeField] WeaponScript _weapon;
     
     bool _isGrounded;
     Vector3 _joystickDirection;
@@ -25,9 +32,11 @@ public class PlayerController : MonoBehaviour
     
     void Reset()
     {
-        _speed = 10f;
         _rb = GetComponent<Rigidbody>();
-        _jumpForce = 100f;
+        
+        _speed = 10f;
+        _jumpForce = 1000f;
+        _jumpEnergy = 20f;
     }
     
     void Start()
@@ -37,6 +46,8 @@ public class PlayerController : MonoBehaviour
         _moveInput.action.canceled += MoveStop;
         
         _jumpInput.action.started += Jump;
+        
+        _attackInput.action.started += Attack;
     }
 
     void MoveUpdate(InputAction.CallbackContext obj)
@@ -46,10 +57,28 @@ public class PlayerController : MonoBehaviour
     }
     void Jump(InputAction.CallbackContext obj)
     {
-        Debug.Log("Jump");
+        if (_weapon.IsCurrentlyAttacking)
+            return;
+        if (_isGrounded == false)
+            return;
+        if (_stamina.HasStamina == false)
+            return;
         
-        if (_isGrounded)
-            _rb.AddForce(Vector3.up * _jumpForce);
+        _rb.AddForce(Vector3.up * _jumpForce);
+        _stamina.DrainStamina(_jumpEnergy);
+        _animator.SetTrigger("Jump");
+    }
+
+    void Attack(InputAction.CallbackContext obj)
+    {
+        if (_weapon.IsAttackReady == false)
+            return;
+        if (_stamina.HasStamina == false)
+            return;
+        
+        _weapon.Attack();
+        _stamina.DrainStamina(_weapon.Weight);
+        _animator.SetTrigger("Attack");
     }
 
     void HandleRotation() // En attente
@@ -57,7 +86,7 @@ public class PlayerController : MonoBehaviour
         float mouseX = Input.GetAxis("Mouse X");
         _rotationY += mouseX * _mouseSensitivity;
         
-        transform.rotation = Quaternion.Euler(0f, _rotationY, 0f);
+        _parent.rotation = Quaternion.Euler(0f, _rotationY, 0f);
     }
     
     void MoveStop(InputAction.CallbackContext obj)
@@ -67,6 +96,9 @@ public class PlayerController : MonoBehaviour
     
     void Update()
     {
+        if (_weapon.IsCurrentlyAttacking)
+            return;
+        
         var directionFinale = _joystickDirection;
         // On récupère les axes de la cam pour les retravailler et les exploiter dans notre direction
         Vector3 f = _camera.transform.forward;
@@ -75,19 +107,22 @@ public class PlayerController : MonoBehaviour
             
         // Calcul de la direction finale
         var dir = (f * directionFinale.z) + (r * directionFinale.x);
-        transform.Translate (dir * (_speed * Time.deltaTime), Space.World);
+        float staminaFactor = _stamina.IsExhaust ? 0.5f : 1;
+        var translation = dir * (_speed * Time.deltaTime * staminaFactor);
+        _parent.Translate (translation, Space.World);
+        _animator.SetFloat("Speed", translation.normalized.magnitude * _speed);
 
         // Rotation du personnage
         Vector3 ff = _camera.transform.forward;
         ff.y = 0f;
-        transform.forward = ff;
+        _parent.forward = ff;
     }
 
     bool ColliderHasGroundTag(Collision other) 
         => other.gameObject.TryGetComponent(out GroundTag gt);
   
-    // bool ColliderHasGroundTag(Collider other) 
-    //     => other.gameObject.TryGetComponent(out GroundTag gt);
+    bool ColliderHasGroundTag(Collider other) 
+        => other.gameObject.TryGetComponent(out GroundTag gt);
     
     void OnCollisionEnter(Collision other)
     {
@@ -95,7 +130,6 @@ public class PlayerController : MonoBehaviour
             return;
 
         _isGrounded = true;
-        Debug.Log("Grounded");
     }    
     void OnCollisionExit(Collision other)
     {
@@ -103,7 +137,21 @@ public class PlayerController : MonoBehaviour
             return;
         
         _isGrounded = false;
-        Debug.Log("Grounded");
+    }    
+    
+    void OnTriggerEnter(Collider collider)
+    {
+        if (ColliderHasGroundTag(collider) == false)
+            return;
+
+        _isGrounded = true;
+    }    
+    void OnTriggerExit(Collider collider)
+    {
+        if (ColliderHasGroundTag(collider) == false)
+            return;
+        
+        _isGrounded = false;
     }
 
 
