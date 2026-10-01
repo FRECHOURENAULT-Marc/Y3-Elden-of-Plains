@@ -48,15 +48,9 @@ public class FollowTransform : MonoBehaviour
 
     async void RefreshTargetAsync(CancellationToken cancel)
     {
-        float startTime = Time.time;
-        float timer = 0.0f;
-        // while (destroyCancellationToken.IsCancellationRequested == false)
         while (true)
         {
-            await Awaitable.NextFrameAsync(cancel);
-            if (cancel.IsCancellationRequested)
-                return;
-
+            await Awaitable.WaitForSecondsAsync(_refreshTime, cancel);
             
             if (_isStopped)
                 continue;
@@ -64,11 +58,6 @@ public class FollowTransform : MonoBehaviour
             if (_agent.isStopped)
                 _onDestinationReached?.Invoke();
             
-            timer = Time.time - startTime;
-
-            if (timer < _refreshTime) continue;
-            
-            startTime = Time.time;
             _agent.SetDestination(_target.position);
         }
     }
