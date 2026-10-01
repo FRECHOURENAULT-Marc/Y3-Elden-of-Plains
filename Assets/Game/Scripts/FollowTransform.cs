@@ -9,6 +9,8 @@ public class FollowTransform : MonoBehaviour
     [SerializeField] NavMeshAgent _agent;
     [SerializeField] float _refreshTime = 0.5f;
     [SerializeField] UnityEvent _onDestinationReached;
+    
+    bool _isStopped = false;
 
     void Reset()
     {
@@ -27,6 +29,23 @@ public class FollowTransform : MonoBehaviour
         RefreshTargetAsync(destroyCancellationToken);
     }
 
+    public void StopFollowing()
+    {
+        _isStopped = true;
+        _agent.ResetPath();
+    }
+
+    public void ResumeFollowing()
+    {
+        _isStopped = false;
+        _agent.SetDestination(_target.position);
+    }
+
+    public float GetDistanceToTarget()
+    {
+        return (_target.position -transform.position).magnitude;
+    }
+
     async void RefreshTargetAsync(CancellationToken cancel)
     {
         float startTime = Time.time;
@@ -37,6 +56,10 @@ public class FollowTransform : MonoBehaviour
             await Awaitable.NextFrameAsync(cancel);
             if (cancel.IsCancellationRequested)
                 return;
+
+            
+            if (_isStopped)
+                continue;
             
             if (_agent.isStopped)
                 _onDestinationReached?.Invoke();

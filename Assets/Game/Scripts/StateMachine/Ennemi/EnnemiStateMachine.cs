@@ -1,0 +1,44 @@
+using System.Collections.Generic;
+using UnityEngine;
+
+public class EnnemiStateMachine : IStateMachine
+{
+    //[SerializeField] Animator _followTransform;
+    [SerializeField] FollowTransform _followTransform;
+    [SerializeField] WeaponScript _weapon;
+    [SerializeField] float _attackRange;
+    
+    protected override void Start()
+    {
+        //States
+        EnnemiFollowState follow = new EnnemiFollowState
+        {
+            followTransform = _followTransform
+        };
+        EnnemiAttackState attack = new EnnemiAttackState
+        {
+            weapon = _weapon
+        };
+
+        //Transitions
+        EnnemiFollowToAttack followToAtk = new EnnemiFollowToAttack
+        {
+            followTransform = _followTransform,
+            attackRange = _attackRange,
+            nextState = attack
+        };
+        AddState(follow, followToAtk);
+        
+        EnnemiAttackToFollow atkToFollow = new EnnemiAttackToFollow
+        {
+            followTransform = _followTransform,
+            attackRange = _attackRange,
+            weapon = _weapon,
+            nextState = follow
+        };
+        AddState(attack, atkToFollow);
+        
+        //Define first state
+        base.Start();
+    }
+}
