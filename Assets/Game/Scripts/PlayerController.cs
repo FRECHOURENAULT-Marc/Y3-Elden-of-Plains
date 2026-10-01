@@ -18,9 +18,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _speed;
     [SerializeField] float _jumpForce;
     [SerializeField] GameObject _footPosition;
+    [SerializeField] float _mouseSensitivity;
     
     bool _isGrounded;
     Vector3 _joystickDirection;
+    private float _rotationY;
     
     void Reset()
     {
@@ -45,6 +47,14 @@ public class PlayerController : MonoBehaviour
         _joystickDirection = obj.ReadValue<Vector2>();
         _joystickDirection = new Vector3(_joystickDirection.x, 0f, _joystickDirection.y);
     }
+
+    void HandleRotation()
+    {
+        float mouseX = Input.GetAxis("Mouse X");
+        _rotationY += mouseX * _mouseSensitivity;
+        
+        transform.rotation = Quaternion.Euler(0f, _rotationY, 0f);
+    }
     
     void MoveStop(InputAction.CallbackContext obj)
     {
@@ -68,6 +78,7 @@ public class PlayerController : MonoBehaviour
         Vector3 f = _camera.transform.forward;
         f.y = 0f;
         var r = _camera.transform.right;
+            
         // Calcul de la direction finale
         var dir = (f * directionFinale.z) + (r * directionFinale.x);
         transform.Translate (dir * (_speed * Time.deltaTime), Space.World);
