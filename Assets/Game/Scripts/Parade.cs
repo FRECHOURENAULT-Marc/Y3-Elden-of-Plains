@@ -33,7 +33,6 @@ public class Parade : MonoBehaviour
     {
         if (_recoveryTimer < _recoveryTime)
         {
-            Debug.Log("Recovering... (" +  _recoveryTimer/_recoveryTime*100.0f + "%)");
             return;
         }
         // Ready !
