@@ -15,6 +15,8 @@ public class WeaponScript : MonoBehaviour
     [SerializeField] float _beforeDamageTime;
     [SerializeField] float _attackTime;
     [SerializeField] float _recoveryTime;
+    
+    [Header("Events")]
     [SerializeField] UnityEvent _onStartCharging;
     [SerializeField] UnityEvent _onStartAttacking;
     [SerializeField] UnityEvent _onContact;

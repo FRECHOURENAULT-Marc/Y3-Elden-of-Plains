@@ -13,7 +13,7 @@ public class Parade : MonoBehaviour
     float _parryTimer;
     
     [Header("Dependencies")]
-    [SerializeField] LifeScript _life;
+    [SerializeField] LivingEntity _entity;
     
     [Header("Debug")] // Debug
     [SerializeField] InputActionReference _parryInput;
@@ -39,7 +39,7 @@ public class Parade : MonoBehaviour
         // Ready !
         _recoveryTimer = 0;
 
-        _life.IsInvincible = true;
+        _entity.IsInvincible = true;
         Debug.Log("Invincible");
         
         float startTime = Time.time;
@@ -50,7 +50,7 @@ public class Parade : MonoBehaviour
 
         }
         
-        _life.IsInvincible = false;
+        _entity.IsInvincible = false;
         _parryTimer = 0;
         Debug.Log("Not invincible");
     }
