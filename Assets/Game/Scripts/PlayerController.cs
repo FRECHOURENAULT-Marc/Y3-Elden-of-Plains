@@ -1,4 +1,5 @@
 using System;
+using Unity.Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,15 +10,13 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Dependances")] 
     [SerializeField] Rigidbody _rb;
+    [SerializeField] Camera _camera;
     [SerializeField] InputActionReference _moveInput;
     [SerializeField] InputActionReference _jumpInput;
-    [SerializeField] Camera _camera;
         
     [Header("Conf")]
-    [SerializeField] Vector3 _direction;
     [SerializeField] float _speed;
     [SerializeField] float _jumpForce;
-    [SerializeField] GameObject _footPosition;
     [SerializeField] float _mouseSensitivity;
     
     bool _isGrounded;
@@ -26,20 +25,18 @@ public class PlayerController : MonoBehaviour
     
     void Reset()
     {
-        _direction = Vector3.forward;
         _speed = 10f;
         _rb = GetComponent<Rigidbody>();
         _jumpForce = 100f;
     }
     
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Debug.Log("Start");
-        
         _moveInput.action.started += MoveUpdate;
         _moveInput.action.performed += MoveUpdate;
         _moveInput.action.canceled += MoveStop;
+        
+        _jumpInput.action.started += Jump;
     }
 
     void MoveUpdate(InputAction.CallbackContext obj)
@@ -47,8 +44,15 @@ public class PlayerController : MonoBehaviour
         _joystickDirection = obj.ReadValue<Vector2>();
         _joystickDirection = new Vector3(_joystickDirection.x, 0f, _joystickDirection.y);
     }
+    void Jump(InputAction.CallbackContext obj)
+    {
+        Debug.Log("Jump");
+        
+        if (_isGrounded)
+            _rb.AddForce(Vector3.up * _jumpForce);
+    }
 
-    void HandleRotation()
+    void HandleRotation() // En attente
     {
         float mouseX = Input.GetAxis("Mouse X");
         _rotationY += mouseX * _mouseSensitivity;
@@ -58,21 +62,11 @@ public class PlayerController : MonoBehaviour
     
     void MoveStop(InputAction.CallbackContext obj)
     {
-        _joystickDirection=Vector3.zero;
+        _joystickDirection = Vector3.zero;
     }
     
-    // Update is called once per frame
     void Update()
     {
-        // Detection du sol basique
-        _isGrounded = Physics.Raycast(_footPosition.transform.position, Vector3.down, 1f);
-        Debug.DrawRay(_footPosition.transform.position, Vector3.down *1, Color.red);
-        
-        if (_jumpInput.action.WasPressedThisFrame()) // && _isGrounded)
-        {
-            _rb.AddForce(Vector3.up * _jumpForce);
-        }
-        
         var directionFinale = _joystickDirection;
         // On récupère les axes de la cam pour les retravailler et les exploiter dans notre direction
         Vector3 f = _camera.transform.forward;
@@ -88,26 +82,29 @@ public class PlayerController : MonoBehaviour
         ff.y = 0f;
         transform.forward = ff;
     }
+
+    bool ColliderHasGroundTag(Collision other) 
+        => other.gameObject.TryGetComponent(out GroundTag gt);
+  
+    // bool ColliderHasGroundTag(Collider other) 
+    //     => other.gameObject.TryGetComponent(out GroundTag gt);
     
     void OnCollisionEnter(Collision other)
     {
-        // Detection via un TAG
-        //if (other.gameObject.CompareTag("SOL"))
-        //{
-        //    Debug.Log("Game OVER");
-        //}
-        
-        // Detection avec component
-        var gt = other.gameObject.GetComponent<GroundTag>();
-        if (gt != null)
-        {
-            Debug.Log("Game OVER");
-        }
+        if (ColliderHasGroundTag(other) == false)
+            return;
 
-        if (other.gameObject.TryGetComponent(out GroundTag gtt))
-        {
-            Debug.Log("Game OVER");
-        }
+        _isGrounded = true;
+        Debug.Log("Grounded");
+    }    
+    void OnCollisionExit(Collision other)
+    {
+        if (ColliderHasGroundTag(other) == false)
+            return;
         
+        _isGrounded = false;
+        Debug.Log("Grounded");
     }
+
+
 }

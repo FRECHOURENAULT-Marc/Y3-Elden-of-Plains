@@ -903,7 +903,7 @@ MonoBehaviour:
       Radius: 2.5
       Height: 0.1
     SplineCurvature: 0.5
-  RecenteringTarget: 2
+  RecenteringTarget: 3
   HorizontalAxis:
     Value: 0
     Center: 0
@@ -1005,8 +1005,8 @@ GameObject:
   - component: {fileID: 1232523769}
   - component: {fileID: 1232523768}
   - component: {fileID: 1232523767}
-  - component: {fileID: 1232523766}
   - component: {fileID: 1232523772}
+  - component: {fileID: 1232523766}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1027,13 +1027,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   _rb: {fileID: 1232523767}
+  _camera: {fileID: 961739752}
   _moveInput: {fileID: -1680190386980627800, guid: a68bca4fc6c74564687d909e9e5a94a5, type: 3}
   _jumpInput: {fileID: -2099379676528639254, guid: a68bca4fc6c74564687d909e9e5a94a5, type: 3}
-  _camera: {fileID: 961739752}
-  _direction: {x: 0, y: 0, z: 1}
   _speed: 10
   _jumpForce: 300
-  _footPosition: {fileID: 1730003405}
   _mouseSensitivity: 0
 --- !u!54 &1232523767
 Rigidbody:
@@ -1312,6 +1310,7 @@ GameObject:
   - component: {fileID: 1572847353}
   - component: {fileID: 1572847352}
   - component: {fileID: 1572847351}
+  - component: {fileID: 1572847355}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -1413,6 +1412,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1572847355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1572847350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b35358352d53d7a4e9b1172835040ec9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GroundTag
 --- !u!1 &1730003405
 GameObject:
   m_ObjectHideFlags: 0
@@ -1449,6 +1460,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 961739753}
+  - {fileID: 1146780010}
   - {fileID: 203844589}
   - {fileID: 1572847354}
   - {fileID: 1232523771}
@@ -1456,4 +1468,3 @@ SceneRoots:
   - {fileID: 637667383}
   - {fileID: 292702252}
   - {fileID: 1375069127}
-  - {fileID: 1146780010}
