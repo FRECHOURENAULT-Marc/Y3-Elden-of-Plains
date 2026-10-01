@@ -7,7 +7,7 @@ using UnityEngine;
 {
     public IState state;
     
-    public List<ITransition> transitions = new List<ITransition>();
+    public List<ITransition> transitions = new();
 }
 
 public abstract class IStateMachine : MonoBehaviour
@@ -15,6 +15,11 @@ public abstract class IStateMachine : MonoBehaviour
     protected List<StateMachineElement> _elements;
 
     protected StateMachineElement _activeElement;
+
+    void Awake()
+    {
+        _elements = new List<StateMachineElement>();
+    }
 
     protected virtual void Start()
     {

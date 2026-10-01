@@ -43,7 +43,7 @@ public class FollowTransform : MonoBehaviour
 
     public float GetDistanceToTarget()
     {
-        return (_target.position -transform.position).magnitude;
+        return (_target.position - transform.position).magnitude;
     }
 
     async void RefreshTargetAsync(CancellationToken cancel)

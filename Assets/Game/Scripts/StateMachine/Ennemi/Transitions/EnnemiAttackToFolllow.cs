@@ -3,8 +3,8 @@ using UnityEngine;
 public class EnnemiAttackToFollow: ITransition
 {
     public float attackRange;
-    public WeaponScript weapon;
     public FollowTransform followTransform;
+    public WeaponScript weapon;
     
     public override bool Test()
     {
