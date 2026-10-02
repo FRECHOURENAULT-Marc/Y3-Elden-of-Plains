@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class EnnemiStateMachine : IStateMachine
 {
-    //[SerializeField] Animator _followTransform;
+    [SerializeField] Transform _parent;
     [SerializeField] FollowTransform _followTransform;
     [SerializeField] WeaponScript _weapon;
     [SerializeField] float _attackRange;
@@ -24,7 +24,6 @@ public class EnnemiStateMachine : IStateMachine
         EnnemiFollowToAttack followToAtk = new EnnemiFollowToAttack
         {
             followTransform = _followTransform,
-            attackRange = _attackRange,
             nextState = attack
         };
         AddState(follow, followToAtk);
@@ -32,7 +31,6 @@ public class EnnemiStateMachine : IStateMachine
         EnnemiAttackToFollow atkToFollow = new EnnemiAttackToFollow
         {
             followTransform = _followTransform,
-            attackRange = _attackRange,
             weapon = _weapon,
             nextState = follow
         };

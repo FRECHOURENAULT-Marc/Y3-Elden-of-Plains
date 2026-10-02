@@ -8,14 +8,17 @@ using Object = System.Object;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("Dependencies")] 
+    [Header("Dependencies")]
+    [SerializeField] LifeScript _life;
+    [SerializeField] StaminaHandler _stamina;
+    [SerializeField] Parade _parry;
+    [SerializeField] WeaponScript _weapon;
+    
     [SerializeField] Transform _parent;
     [SerializeField] Rigidbody _rb;
     [SerializeField] Camera _camera;
     [SerializeField] Animator _animator;
-    [SerializeField] StaminaHandler _stamina;
-    [SerializeField] Parade _parry;
-        
+    
     [Header("Inputs")]
     [SerializeField] InputActionReference _moveInput;
     [SerializeField] InputActionReference _jumpInput;
@@ -26,7 +29,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _jumpForce;
     [SerializeField] float _jumpEnergy;
     /*[SerializeField]*/ float _mouseSensitivity;
-    [SerializeField] WeaponScript _weapon;
+
     
     bool _isGrounded;
     Vector3 _joystickDirection;
@@ -52,6 +55,23 @@ public class PlayerController : MonoBehaviour
         _attackInput.action.started += Attack;
 
         _parryInput.action.started += Parry;
+
+        _life.OnDamaged += OnHit;
+    }
+
+    void OnDestroy()
+    {
+        _moveInput.action.started -= MoveUpdate;
+        _moveInput.action.performed -= MoveUpdate;
+        _moveInput.action.canceled -= MoveStop;
+        
+        _jumpInput.action.started -= Jump;
+        
+        _attackInput.action.started -= Attack;
+
+        _parryInput.action.started -= Parry;
+
+        _life.OnDamaged -= OnHit;
     }
 
     void MoveUpdate(InputAction.CallbackContext obj)
@@ -63,6 +83,8 @@ public class PlayerController : MonoBehaviour
     {
         if (_weapon.IsCurrentlyAttacking)
             return;
+        if (_parry.IsParring)
+            return;
         if (_isGrounded == false)
             return;
         if (_stamina.HasStamina == false)
@@ -72,7 +94,6 @@ public class PlayerController : MonoBehaviour
         _stamina.DrainStamina(_jumpEnergy);
         _animator.SetTrigger("Jump");
     }
-
     void Attack(InputAction.CallbackContext obj)
     {
         if (_weapon.IsAttackReady == false)
@@ -84,16 +105,22 @@ public class PlayerController : MonoBehaviour
         _stamina.DrainStamina(_weapon.Weight);
         _animator.SetTrigger("Attack");
     }
-
     void Parry(InputAction.CallbackContext obj)
     {
+        if (_isGrounded == false)
+            return;
         if (_weapon.IsAttackReady == false)
             return;
-        if (_parry.IsParring)
+        if (_parry.IsReady == false)
             return;
         
         _parry.StopAttack();
         _animator.SetTrigger("Parry");
+    }
+
+    void OnHit()
+    {
+        _animator.SetTrigger("Hit");
     }
 
     void HandleRotation() // En attente
