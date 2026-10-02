@@ -44,7 +44,7 @@ public class LifeScript : MonoBehaviour
         Life = MaxLife;
     }
 
-    void Start()
+    void Awake()
     {
         Life = MaxLife;
     }
