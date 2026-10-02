@@ -93,6 +93,7 @@ public class PlayerController : MonoBehaviour
             return;
         
         _parry.StopAttack();
+        _animator.SetTrigger("Parry");
     }
 
     void HandleRotation() // En attente
@@ -111,6 +112,8 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         if (_weapon.IsCurrentlyAttacking)
+            return;        
+        if (_parry.IsParring)
             return;
         
         var directionFinale = _joystickDirection;
