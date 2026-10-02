@@ -14,11 +14,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Camera _camera;
     [SerializeField] Animator _animator;
     [SerializeField] StaminaHandler _stamina;
+    [SerializeField] Parade _parry;
         
     [Header("Inputs")]
     [SerializeField] InputActionReference _moveInput;
     [SerializeField] InputActionReference _jumpInput;
     [SerializeField] InputActionReference _attackInput;
+    [SerializeField] InputActionReference _parryInput;
     [Header("Configuration")]
     [SerializeField] float _speed;
     [SerializeField] float _jumpForce;
@@ -48,6 +50,8 @@ public class PlayerController : MonoBehaviour
         _jumpInput.action.started += Jump;
         
         _attackInput.action.started += Attack;
+
+        _parryInput.action.started += Parry;
     }
 
     void MoveUpdate(InputAction.CallbackContext obj)
@@ -79,6 +83,16 @@ public class PlayerController : MonoBehaviour
         _weapon.Attack();
         _stamina.DrainStamina(_weapon.Weight);
         _animator.SetTrigger("Attack");
+    }
+
+    void Parry(InputAction.CallbackContext obj)
+    {
+        if (_weapon.IsAttackReady == false)
+            return;
+        if (_parry.IsParring)
+            return;
+        
+        _parry.StopAttack();
     }
 
     void HandleRotation() // En attente

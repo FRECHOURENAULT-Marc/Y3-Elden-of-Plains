@@ -14,9 +14,6 @@ public class Parade : MonoBehaviour
     
     [Header("Dependencies")]
     [SerializeField] LivingEntity _entity;
-    
-    [Header("Debug")] // Debug
-    [SerializeField] InputActionReference _parryInput;
 
     public bool IsParring
     {
@@ -32,9 +29,7 @@ public class Parade : MonoBehaviour
     public async void StopAttack()
     {
         if (_recoveryTimer < _recoveryTime)
-        {
             return;
-        }
         // Ready !
         _recoveryTimer = 0;
 
@@ -54,14 +49,6 @@ public class Parade : MonoBehaviour
         Debug.Log("Not invincible");
     }
     
-    void Start()
-    {
-        //Debug
-        if (_parryInput)
-            _parryInput.action.started += (context) => StopAttack();  
-    }
-    
-    // Update is called once per frame
     void Update()
     {
         if (IsParring)
