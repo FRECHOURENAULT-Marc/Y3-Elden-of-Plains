@@ -4,36 +4,30 @@ using UnityEngine.UI;
 
 public class UIPlayerStamina : MonoBehaviour
 {
-    [SerializeField] StaminaHandler _player;
+    [SerializeField] StaminaHandler _playerStamina;
     [SerializeField] Slider _slider;
     
     void Reset()
     {
         _slider = GetComponent<Slider>();
-        _player = GameObject.FindObjectOfType<StaminaHandler>();
     }
     
     void Start()
     {
-        _slider.maxValue = _player.MaxStamina;
-        _player.OnDrain += UpdateSlider;
-        _player.OnRegen += UpdateSlider;
+        _slider.maxValue = _playerStamina.MaxStamina;
+        _playerStamina.OnDrain += UpdateSlider;
+        _playerStamina.OnRegen += UpdateSlider;
         UpdateSlider();
     }
 
     void OnDestroy()
     {
-        _player.OnDrain -= UpdateSlider;
-    }
-    
-    // Update is called once per frame
-    void Update()
-    {
-        
+        _playerStamina.OnDrain -= UpdateSlider;
+        _playerStamina.OnRegen -= UpdateSlider;
     }
     
     void UpdateSlider()
     {
-        _slider.value = _player.Stamina;
+        _slider.value = _playerStamina.Stamina;
     }
 }
