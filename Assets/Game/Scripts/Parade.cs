@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -6,18 +7,25 @@ using UnityEngine.InputSystem;
 public class Parade : MonoBehaviour
 {
     [Header("Stats")]
+    //[SerializeField] float _recoveryTime;
     [SerializeField] float _recoveryTime;
     [SerializeField] float _parryTime;
     
-    float _recoveryTimer;
-    float _parryTimer;
+    public event Action OnParryStart;
+    public event Action OnParryEnd;
+    
+    bool _isRecovering;
     
     [Header("Dependencies")]
     [SerializeField] LivingEntity _entity;
 
     public bool IsParring
     {
-        get { return _parryTimer > 0; }
+        get => _entity.IsInvincible; 
+    }    
+    public bool IsReady
+    {
+        get => IsParring == false && _isRecovering == false; 
     }
     
     void Reset()
@@ -28,31 +36,28 @@ public class Parade : MonoBehaviour
 
     public async void StopAttack()
     {
-        if (_recoveryTimer < _recoveryTime)
+        if (IsReady == false)
             return;
         // Ready !
-        _recoveryTimer = 0;
 
         _entity.IsInvincible = true;
+        OnParryStart?.Invoke();
         Debug.Log("Invincible");
         
-        float startTime = Time.time;
-        while (_parryTimer < _parryTime)
-        {
-            await Awaitable.NextFrameAsync();
-            _parryTimer = Time.time - startTime;
-
-        }
+        await Awaitable.WaitForSecondsAsync(_parryTime, destroyCancellationToken);
+        if (destroyCancellationToken.IsCancellationRequested)
+            return;
         
         _entity.IsInvincible = false;
-        _parryTimer = 0;
+        OnParryEnd?.Invoke();
         Debug.Log("Not invincible");
-    }
-    
-    void Update()
-    {
-        if (IsParring)
+
+        // Not ready
+        _isRecovering = true;
+        await Awaitable.WaitForSecondsAsync(_recoveryTime, destroyCancellationToken);
+        if (destroyCancellationToken.IsCancellationRequested)
             return;
-        _recoveryTimer += Time.deltaTime;
+
+        _isRecovering = false;
     }
 }
