@@ -4,6 +4,7 @@ using UnityEngine;
 public class EnnemiStateMachine : IStateMachine
 {
     [SerializeField] Transform _parent;
+    [SerializeField] Animator _animator;
     [SerializeField] FollowTransform _followTransform;
     [SerializeField] WeaponScript _weapon;
     [SerializeField] float _attackRange;
@@ -17,7 +18,8 @@ public class EnnemiStateMachine : IStateMachine
         };
         EnnemiAttackState attack = new EnnemiAttackState
         {
-            weapon = _weapon
+            weapon = _weapon,
+            anim = _animator
         };
 
         //Transitions

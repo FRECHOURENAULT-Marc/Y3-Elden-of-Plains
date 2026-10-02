@@ -10,9 +10,6 @@ public class StaminaHandler : MonoBehaviour
     [SerializeField] float _staminaRegenRate;
     [SerializeField] float _startRegenTime;
     [SerializeField] float _exhaustTime;
-    
-    [Header("Debug")]
-    [SerializeField] TextMeshProUGUI _debugText;
      
     [ShowNonSerializedField] float _stamina;
     float _startRegenTimer;
@@ -93,9 +90,6 @@ public class StaminaHandler : MonoBehaviour
         _cts = new CancellationTokenSource();
         _cts = CancellationTokenSource.CreateLinkedTokenSource(destroyCancellationToken, _cts.Token);
         HandleStartRegen(_cts.Token);
-        
-        //Debug
-        Debug.Log($"Stamina {amount} has been drained.");
 
         if (HasStamina)
             return;
@@ -106,8 +100,6 @@ public class StaminaHandler : MonoBehaviour
 
     void Update()
     {
-        _debugText.SetText($"Stamina {Mathf.RoundToInt(_stamina)}");
-        
         if (IsExhaust || IsDraining)
             return;
         if (_stamina == _maxStamina)
