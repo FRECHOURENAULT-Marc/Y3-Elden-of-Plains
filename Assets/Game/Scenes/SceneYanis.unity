@@ -1007,6 +1007,8 @@ GameObject:
   - component: {fileID: 1232523767}
   - component: {fileID: 1232523772}
   - component: {fileID: 1232523766}
+  - component: {fileID: 1232523774}
+  - component: {fileID: 1232523773}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1026,13 +1028,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9384a02ffd7a0b4d83b6a720586e7b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  _parent: {fileID: 1232523771}
   _rb: {fileID: 1232523767}
   _camera: {fileID: 961739752}
+  _animator: {fileID: 1232523773}
+  _stamina: {fileID: 1232523774}
   _moveInput: {fileID: -1680190386980627800, guid: a68bca4fc6c74564687d909e9e5a94a5, type: 3}
   _jumpInput: {fileID: -2099379676528639254, guid: a68bca4fc6c74564687d909e9e5a94a5, type: 3}
+  _attackInput: {fileID: 0}
   _speed: 10
   _jumpForce: 300
-  _mouseSensitivity: 0
+  _jumpEnergy: 0
+  _weapon: {fileID: 0}
 --- !u!54 &1232523767
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1186,6 +1193,45 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 961739752}
+--- !u!95 &1232523773
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1232523765}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 27c9dcd6e21b40d4c8fb4fd2c320d378, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1232523774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1232523765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14f5d334938fc874ca6acbb3106b8011, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::StaminaHandler
+  _maxStamina: 100
+  _staminaRegenRate: 10
+  _startRegenTime: 5
+  _exhaustTime: 10
+  _debugText: {fileID: 0}
 --- !u!1 &1375069123
 GameObject:
   m_ObjectHideFlags: 0
