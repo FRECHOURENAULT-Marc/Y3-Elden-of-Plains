@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using NaughtyAttributes;
 using TMPro;
@@ -17,6 +18,9 @@ public class StaminaHandler : MonoBehaviour
     float _startRegenTimer;
     float _exhaustTimer;
     CancellationTokenSource _cts;
+    
+    public event Action OnDrain;
+    public event Action OnRegen;
 
     public bool IsExhaust
     {
@@ -31,6 +35,16 @@ public class StaminaHandler : MonoBehaviour
     {
         get => _stamina > 0;
     }
+
+    public float Stamina
+    {
+        get => _stamina;
+    }
+    
+    public float MaxStamina
+    {
+        get => _maxStamina;
+    }
     
     void Reset()
     {
@@ -39,7 +53,7 @@ public class StaminaHandler : MonoBehaviour
         _startRegenTime = 5;
         _exhaustTime = 10;
     }
-    void Start()
+    void Awake()
     {
         _stamina = _maxStamina;
         _cts = new CancellationTokenSource();
@@ -73,6 +87,7 @@ public class StaminaHandler : MonoBehaviour
             return;
         
         _stamina -= amount;
+        OnDrain?.Invoke();
         
         _cts.Cancel();
         _cts = new CancellationTokenSource();
@@ -95,7 +110,10 @@ public class StaminaHandler : MonoBehaviour
         
         if (IsExhaust || IsDraining)
             return;
-
+        if (_stamina == _maxStamina)
+            return;
+        
+        OnRegen?.Invoke();
         _stamina += _staminaRegenRate*Time.deltaTime;
         if (_stamina > _maxStamina)
             _stamina = _maxStamina;
