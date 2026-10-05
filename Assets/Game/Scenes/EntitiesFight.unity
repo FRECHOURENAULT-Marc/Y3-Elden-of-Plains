@@ -1937,6 +1937,10 @@ PrefabInstance:
       propertyPath: _target
       value: 
       objectReference: {fileID: 1988516986}
+    - target: {fileID: 4367037960044583562, guid: 75e7c4a790ccdc24d86b6c83ae939326, type: 3}
+      propertyPath: _playerParry
+      value: 
+      objectReference: {fileID: 1516769710}
     - target: {fileID: 5023140047251374888, guid: 75e7c4a790ccdc24d86b6c83ae939326, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

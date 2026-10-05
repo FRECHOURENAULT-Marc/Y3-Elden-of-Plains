@@ -149,7 +149,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
@@ -195,8 +195,8 @@ MonoBehaviour:
   _collider: {fileID: 4643458934054709833}
   _team: 1
   _damage: 1
-  _beforeDamageTime: 1
-  _attackTime: 1
+  _beforeDamageTime: 0.5
+  _attackTime: 0.75
   _recoveryTime: 1
   _weight: 0
   _onStartCharging:
@@ -484,9 +484,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnnemiStateMachine
   _parent: {fileID: 5023140047251374888}
   _animator: {fileID: 8291602121449783863}
+  _agent: {fileID: 7239750702662576618}
+  _life: {fileID: 2543999709590532419}
   _followTransform: {fileID: 3815971272919192438}
   _weapon: {fileID: 2451010609873626322}
-  _attackRange: 1
+  _playerParry: {fileID: 0}
+  _counterTime: 4
 --- !u!1 &7450600325323012948
 GameObject:
   m_ObjectHideFlags: 0
@@ -1176,7 +1179,7 @@ Animator:
   m_GameObject: {fileID: 7381481675520858874}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 27c9dcd6e21b40d4c8fb4fd2c320d378, type: 2}
+  m_Controller: {fileID: 9100000, guid: 6cc1b08f294fb02459cdea52682f2067, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
