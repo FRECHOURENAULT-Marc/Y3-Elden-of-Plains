@@ -16,11 +16,12 @@ public class PlayerController : MonoBehaviour
     
     [SerializeField] Transform _parent;
     [SerializeField] Rigidbody _rb;
-    [SerializeField] Camera _camera;
+    [SerializeField] CinemachineCamera _camera;
     [SerializeField] Animator _animator;
     
     [Header("Inputs")]
     [SerializeField] InputActionReference _moveInput;
+    [SerializeField] InputActionReference _LookInput;
     [SerializeField] InputActionReference _jumpInput;
     [SerializeField] InputActionReference _attackInput;
     [SerializeField] InputActionReference _parryInput;
@@ -29,11 +30,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _jumpForce;
     [SerializeField] float _jumpEnergy;
     /*[SerializeField]*/ float _mouseSensitivity;
-
     
+    CinemachineOrbitalFollow _cameraOrbital;
     bool _isGrounded;
+    bool _isFreeLook;
     Vector3 _joystickDirection;
-    private float _rotationY;
+    float _oldVerticalAxis;
+    float _oldHorizontalAxis;
+    Vector3 _oldRight;
+    Vector3 _oldForward;
     
     void Reset()
     {
@@ -46,9 +51,15 @@ public class PlayerController : MonoBehaviour
     
     void Start()
     {
+        _cameraOrbital = _camera.GetComponent<CinemachineOrbitalFollow>();
+        _isFreeLook = true;
+        
         _moveInput.action.started += MoveUpdate;
         _moveInput.action.performed += MoveUpdate;
         _moveInput.action.canceled += MoveStop;
+
+        _LookInput.action.started += ActivateFreeLook;
+        _LookInput.action.canceled += DisableFreeLook;
         
         _jumpInput.action.started += Jump;
         
@@ -79,6 +90,7 @@ public class PlayerController : MonoBehaviour
         _joystickDirection = obj.ReadValue<Vector2>();
         _joystickDirection = new Vector3(_joystickDirection.x, 0f, _joystickDirection.y);
     }
+    void MoveStop(InputAction.CallbackContext obj) => _joystickDirection = Vector3.zero;
     void Jump(InputAction.CallbackContext obj)
     {
         if (_weapon.IsCurrentlyAttacking)
@@ -117,24 +129,22 @@ public class PlayerController : MonoBehaviour
         _parry.StopAttack();
         _animator.SetTrigger("Parry");
     }
-
-    void OnHit()
+    void ActivateFreeLook(InputAction.CallbackContext obj)
     {
-        _animator.SetTrigger("Hit");
-    }
+        _isFreeLook = true;
+        _oldHorizontalAxis = _cameraOrbital.HorizontalAxis.Value;
+        _oldVerticalAxis = _cameraOrbital.VerticalAxis.Value;
 
-    void HandleRotation() // En attente
-    {
-        float mouseX = Input.GetAxis("Mouse X");
-        _rotationY += mouseX * _mouseSensitivity;
-        
-        _parent.rotation = Quaternion.Euler(0f, _rotationY, 0f);
     }
+    void DisableFreeLook(InputAction.CallbackContext obj)
+    {
+        _isFreeLook = false;
+        _cameraOrbital.HorizontalAxis.Value = _oldHorizontalAxis;
+        _cameraOrbital.VerticalAxis.Value = _oldVerticalAxis;
+    } 
     
-    void MoveStop(InputAction.CallbackContext obj)
-    {
-        _joystickDirection = Vector3.zero;
-    }
+    void OnHit() => _animator.SetTrigger("Hit");
+    
     
     void Update()
     {
@@ -145,21 +155,38 @@ public class PlayerController : MonoBehaviour
         
         var directionFinale = _joystickDirection;
         // On récupère les axes de la cam pour les retravailler et les exploiter dans notre direction
-        Vector3 f = _camera.transform.forward;
+        if (_isFreeLook == false)
+        {
+            _oldRight = _camera.transform.right;
+            _oldForward = _camera.transform.forward;
+        }
+        Vector3 f = _oldForward;
         f.y = 0f;
-        var r = _camera.transform.right;
+        var r = _oldRight;
             
         // Calcul de la direction finale
-        var dir = (f * directionFinale.z) + (r * directionFinale.x);
+        var dir = Vector3.zero;
+        dir = (f * directionFinale.z) + (r * directionFinale.x);
+        
         float staminaFactor = _stamina.IsExhaust ? 0.5f : 1;
         var translation = dir * (_speed * Time.deltaTime * staminaFactor);
         _parent.Translate(translation, Space.World);
         _animator.SetFloat("Speed", translation.normalized.magnitude * _speed);
 
         // Rotation du personnage
-        Vector3 ff = _camera.transform.forward;
-        ff.y = 0f;
-        _parent.forward = ff;
+        if (_isFreeLook)
+        {
+            if (dir == Vector3.zero)
+                return;
+            _parent.forward = dir;
+        }
+        else
+        {
+            Vector3 ff = _camera.transform.forward;
+            ff.y = 0f;
+            _parent.forward = ff;
+        }
+            
     }
 
     bool ColliderHasGroundTag(Collision other) 
