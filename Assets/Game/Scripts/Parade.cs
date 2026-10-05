@@ -19,6 +19,9 @@ public class Parade : MonoBehaviour
     [Header("Dependencies")]
     [SerializeField] LivingEntity _entity;
 
+    public float ParryTime { get => _parryTime;}
+    public float RecoveryTime { get => _recoveryTime;}
+    
     public bool IsParring
     {
         get => _entity.IsInvincible; 
@@ -42,7 +45,6 @@ public class Parade : MonoBehaviour
 
         _entity.IsInvincible = true;
         OnParryStart?.Invoke();
-        Debug.Log("Invincible");
         
         await Awaitable.WaitForSecondsAsync(_parryTime, destroyCancellationToken);
         if (destroyCancellationToken.IsCancellationRequested)
@@ -50,7 +52,6 @@ public class Parade : MonoBehaviour
         
         _entity.IsInvincible = false;
         OnParryEnd?.Invoke();
-        Debug.Log("Not invincible");
 
         // Not ready
         _isRecovering = true;
@@ -59,6 +60,5 @@ public class Parade : MonoBehaviour
             return;
 
         _isRecovering = false;
-        Debug.Log("Parry ready");
     }
 }

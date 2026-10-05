@@ -29,7 +29,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _speed;
     [SerializeField] float _jumpForce;
     [SerializeField] float _jumpEnergy;
-    /*[SerializeField]*/ float _mouseSensitivity;
     
     CinemachineOrbitalFollow _cameraOrbital;
     bool _isGrounded;
@@ -52,7 +51,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         _cameraOrbital = _camera.GetComponent<CinemachineOrbitalFollow>();
-        _isFreeLook = true;
         
         _moveInput.action.started += MoveUpdate;
         _moveInput.action.performed += MoveUpdate;
