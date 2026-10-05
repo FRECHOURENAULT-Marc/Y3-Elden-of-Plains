@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7885598065940296004}
   - component: {fileID: 7762129734190073507}
   - component: {fileID: 3832789077830426728}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: r
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 981696956762192521}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Col
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,7 +153,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3852955495381742248}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: "Barri\xE8re"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -239,6 +239,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 3f52d7d845abba24caf33732348de767, type: 3}
       propertyPath: m_Name
       value: fence
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3f52d7d845abba24caf33732348de767, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
