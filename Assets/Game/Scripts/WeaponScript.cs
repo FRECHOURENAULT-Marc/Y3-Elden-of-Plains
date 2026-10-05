@@ -33,6 +33,7 @@ public class WeaponScript : MonoBehaviour
     List<LifeScript> _damagedEntities;
     
     private ATTACK_STATE _attackState = ATTACK_STATE.Ready;
+    private bool _attackCanceled = false;
 
     public float Weight
     {
@@ -46,6 +47,10 @@ public class WeaponScript : MonoBehaviour
     public bool IsAttackReady =>
         _attackState == ATTACK_STATE.Ready;
 
+    public UnityEvent OnContact { get => _onContact; }
+    public UnityEvent OnStartCharging { get => _onStartCharging; }
+    public UnityEvent OnStartAttacking { get => _onStartAttacking; }
+    
     void Reset()
     {
         _damage = 1.0f;
@@ -69,16 +74,19 @@ public class WeaponScript : MonoBehaviour
         _collider.onTriggerStay += InflictDamage;
     }
 
+    public void CancelAttack() => _attackCanceled = true;
+    
     void InflictDamage(Collider other)
     {
         if (_attackState != ATTACK_STATE.Attacking)
             return;
-
+        if(_attackCanceled)
+            return;
+        
         if (other.TryGetComponent(out LifeProxy proxy) == false)
             return;
-
         LifeScript life = proxy._script;
-
+        
         if (_damagedEntities.Contains(life))
             return;
 
@@ -95,7 +103,7 @@ public class WeaponScript : MonoBehaviour
 
     private async Awaitable AttackAsync(CancellationToken cancel = default)
     {
-        if (!IsAttackReady)
+        if (IsAttackReady == false)
             return;
 
         if (cancel == CancellationToken.None)
@@ -129,5 +137,6 @@ public class WeaponScript : MonoBehaviour
 
         _attackState = ATTACK_STATE.Ready;
         _damagedEntities.Clear();
+        _attackCanceled = false;
     }
 }
