@@ -1,0 +1,537 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &119317227491131450
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5489001656238579386}
+  m_Layer: 0
+  m_Name: Tres grosse touffe herbe
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5489001656238579386
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119317227491131450}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -36.967182, y: 0, z: 46.27441}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 54750409606228884}
+  - {fileID: 948144012261316111}
+  - {fileID: 279058522092909965}
+  - {fileID: 3419018573613122846}
+  - {fileID: 7022524001293547319}
+  - {fileID: 4899701999856529088}
+  - {fileID: 3353448124193345458}
+  - {fileID: 4340603092860675836}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &283835190656116963
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5489001656238579386}
+    m_Modifications:
+    - target: {fileID: 1708686916462980515, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_Name
+      value: Grosse Touffe Herbe (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 92.26718
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -40.47441
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 972eda29878b142499adc81546828f73, type: 3}
+--- !u!4 &4340603092860675836 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+  m_PrefabInstance: {fileID: 283835190656116963}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1206474725930322689
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5489001656238579386}
+    m_Modifications:
+    - target: {fileID: 1708686916462980515, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_Name
+      value: Grosse Touffe Herbe (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -30.732815
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -71.07441
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 972eda29878b142499adc81546828f73, type: 3}
+--- !u!4 &3419018573613122846 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+  m_PrefabInstance: {fileID: 1206474725930322689}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1244504590699889069
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5489001656238579386}
+    m_Modifications:
+    - target: {fileID: 1708686916462980515, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_Name
+      value: Grosse Touffe Herbe (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 69.66719
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -47.97441
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 972eda29878b142499adc81546828f73, type: 3}
+--- !u!4 &3353448124193345458 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+  m_PrefabInstance: {fileID: 1244504590699889069}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3667323098245617680
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5489001656238579386}
+    m_Modifications:
+    - target: {fileID: 1708686916462980515, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_Name
+      value: Grosse Touffe Herbe (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.7328186
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -41.57441
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 972eda29878b142499adc81546828f73, type: 3}
+--- !u!4 &948144012261316111 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+  m_PrefabInstance: {fileID: 3667323098245617680}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4329053421427014546
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5489001656238579386}
+    m_Modifications:
+    - target: {fileID: 1708686916462980515, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_Name
+      value: Grosse Touffe Herbe (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -31.83282
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -42.17441
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 972eda29878b142499adc81546828f73, type: 3}
+--- !u!4 &279058522092909965 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+  m_PrefabInstance: {fileID: 4329053421427014546}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4543580261628962187
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5489001656238579386}
+    m_Modifications:
+    - target: {fileID: 1708686916462980515, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_Name
+      value: Grosse Touffe Herbe
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 34.34994
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -42.202362
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 972eda29878b142499adc81546828f73, type: 3}
+--- !u!4 &54750409606228884 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+  m_PrefabInstance: {fileID: 4543580261628962187}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6825642044711352616
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5489001656238579386}
+    m_Modifications:
+    - target: {fileID: 1708686916462980515, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_Name
+      value: Grosse Touffe Herbe (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.9671822
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -71.17441
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 972eda29878b142499adc81546828f73, type: 3}
+--- !u!4 &7022524001293547319 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+  m_PrefabInstance: {fileID: 6825642044711352616}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8949694914778898655
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5489001656238579386}
+    m_Modifications:
+    - target: {fileID: 1708686916462980515, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_Name
+      value: Grosse Touffe Herbe (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 35.567184
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -70.67441
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 972eda29878b142499adc81546828f73, type: 3}
+--- !u!4 &4899701999856529088 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4597200063683104287, guid: 972eda29878b142499adc81546828f73, type: 3}
+  m_PrefabInstance: {fileID: 8949694914778898655}
+  m_PrefabAsset: {fileID: 0}
