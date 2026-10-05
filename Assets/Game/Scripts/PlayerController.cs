@@ -153,7 +153,7 @@ public class PlayerController : MonoBehaviour
         var dir = (f * directionFinale.z) + (r * directionFinale.x);
         float staminaFactor = _stamina.IsExhaust ? 0.5f : 1;
         var translation = dir * (_speed * Time.deltaTime * staminaFactor);
-        _parent.Translate (translation, Space.World);
+        _parent.Translate(translation, Space.World);
         _animator.SetFloat("Speed", translation.normalized.magnitude * _speed);
 
         // Rotation du personnage

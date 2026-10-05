@@ -76,16 +76,14 @@ public class FollowTransform : MonoBehaviour
     {
         if (other.transform != _target)
             return;
-
-        Debug.Log("FollowTransform: Stopped");
+        
         StopFollowing();
     }    
     void OnTriggerExit(Collider other)
     {
         if (other.transform != _target)
             return;
-
-        Debug.Log("FollowTransform: Resumed");
+        
         ResumeFollowing();
     }
 }

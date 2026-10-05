@@ -59,5 +59,6 @@ public class Parade : MonoBehaviour
             return;
 
         _isRecovering = false;
+        Debug.Log("Parry ready");
     }
 }
