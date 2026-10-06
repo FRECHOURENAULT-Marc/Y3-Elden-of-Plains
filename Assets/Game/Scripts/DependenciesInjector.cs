@@ -31,6 +31,7 @@ public abstract class Dependencies
     [SerializeField] Animator _animator;
     [SerializeField] Collider _collider;
     [SerializeField] GameObject _pActions;
+    [SerializeField] GroundChecker _ground;
     [SerializeField] Parade _parry;
     [SerializeField] StaminaHandler _stamina;
     
@@ -42,6 +43,7 @@ public abstract class Dependencies
     public Animator Animator { get => _animator; }
     public GameObject PActions { get => _pActions; }
     public Collider Collider { get => _collider; }
+    public GroundChecker GroundChecker { get => _ground; }
     public Parade Parry { get => _parry; }
     public StaminaHandler Stamina { get => _stamina; }
     
@@ -56,6 +58,7 @@ public abstract class Dependencies
         // PActions
         TryGetComponent(_pActions, ref _parry);
         TryGetComponent(_pActions, ref _stamina);
+        TryGetComponent(_pActions.transform.GetChild(0).gameObject, ref _ground);
     }
 }
 

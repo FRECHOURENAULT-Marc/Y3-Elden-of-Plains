@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     
     
     LifeScript _life;
+    GroundChecker _ground;
     StaminaHandler _stamina;
     Parade _parry;
     WeaponScript _weapon;
@@ -28,7 +29,6 @@ public class PlayerController : MonoBehaviour
     CinemachineCamera _camera;
     CinemachineOrbitalFollow _cameraOrbital;
     
-    bool _isGrounded;
     bool _isFreeLook;
     Vector3 _joystickDirection;
     float _oldVerticalAxis;
@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         _life = Deps.PDeps.Life;
+        _ground = Deps.PDeps.GroundChecker;
         _stamina = Deps.PDeps.Stamina;
         _parry = Deps.PDeps.Parry;
         _weapon = Deps.PDeps.Weapon;
@@ -105,7 +106,7 @@ public class PlayerController : MonoBehaviour
             return;
         if (_parry.IsParring)
             return;
-        if (_isGrounded == false)
+        if (_ground.IsGrounded == false)
             return;
         if (_stamina.HasStamina == false)
             return;
@@ -127,7 +128,7 @@ public class PlayerController : MonoBehaviour
     }
     void Parry(InputAction.CallbackContext obj)
     {
-        if (_isGrounded == false)
+        if (_ground.IsGrounded == false)
             return;
         if (_weapon.IsCurrentlyAttacking)
             return;
@@ -196,27 +197,5 @@ public class PlayerController : MonoBehaviour
         }
             
     }
-
-    bool ColliderHasGroundTag(Collision other) 
-        => other.gameObject.TryGetComponent(out GroundTag gt);
-  
-    bool ColliderHasGroundTag(Collider other) 
-        => other.gameObject.TryGetComponent(out GroundTag gt);
-    
-    void OnTriggerEnter(Collider other)
-    {
-        if (ColliderHasGroundTag(other) == false)
-            return;
-
-        _isGrounded = true;
-    }    
-    void OnTriggerExit(Collider other)
-    {
-        if (ColliderHasGroundTag(other) == false)
-            return;
-        
-        _isGrounded = false;
-    }
-
 
 }
