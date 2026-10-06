@@ -33,7 +33,11 @@ public class EnnemiStateMachine : IStateMachine
     {
         _playerParry = Deps.PDeps.Parry;
         
-        _life.OnDamaged += () => _animator.SetTrigger("Hit");
+        _life.OnDamaged += () =>
+        {
+            _weapon.CancelAttack();
+            _animator.SetTrigger("Hit");
+        };
         UpdateSpeedAnim();
         
         // States
