@@ -81,6 +81,9 @@ public class PlayerController : MonoBehaviour
         _moveInput.action.performed -= MoveUpdate;
         _moveInput.action.canceled -= MoveStop;
         
+        _LookInput.action.started -= ActivateFreeLook;
+        _LookInput.action.canceled -= DisableFreeLook;
+        
         _jumpInput.action.started -= Jump;
         
         _attackInput.action.started -= Attack;
@@ -126,7 +129,7 @@ public class PlayerController : MonoBehaviour
     {
         if (_isGrounded == false)
             return;
-        if (_weapon.IsAttackReady == false)
+        if (_weapon.IsCurrentlyAttacking)
             return;
         if (_parry.IsReady == false)
             return;
@@ -200,31 +203,16 @@ public class PlayerController : MonoBehaviour
     bool ColliderHasGroundTag(Collider other) 
         => other.gameObject.TryGetComponent(out GroundTag gt);
     
-    void OnCollisionEnter(Collision other)
+    void OnTriggerEnter(Collider other)
     {
         if (ColliderHasGroundTag(other) == false)
             return;
 
         _isGrounded = true;
     }    
-    void OnCollisionExit(Collision other)
+    void OnTriggerExit(Collider other)
     {
         if (ColliderHasGroundTag(other) == false)
-            return;
-        
-        _isGrounded = false;
-    }    
-    
-    void OnTriggerEnter(Collider collider)
-    {
-        if (ColliderHasGroundTag(collider) == false)
-            return;
-
-        _isGrounded = true;
-    }    
-    void OnTriggerExit(Collider collider)
-    {
-        if (ColliderHasGroundTag(collider) == false)
             return;
         
         _isGrounded = false;
