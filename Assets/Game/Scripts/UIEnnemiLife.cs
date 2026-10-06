@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class UIEnnemiLife : MonoBehaviour
 {
-
     [Header("Dependencies")]
     [SerializeField] Transform _worldAnchor;
     [SerializeField] RectTransform _uiRect;
@@ -60,7 +59,5 @@ public class UIEnnemiLife : MonoBehaviour
         
         Vector2 screenPos= _cam.WorldToScreenPoint(_worldAnchor.position);
         _uiRect.position = screenPos;
-        
-        
     }
 }

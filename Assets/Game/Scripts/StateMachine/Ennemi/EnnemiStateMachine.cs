@@ -11,23 +11,23 @@ public class EnnemiStateMachine : IStateMachine
     [SerializeField] Transform _parent;
     [SerializeField] Animator _animator;
     [SerializeField] NavMeshAgent _agent;
-    [SerializeField] LifeScript _life;
+    [SerializeField] LivingEntity _life;
     [SerializeField] FollowTransform _followTransform;
     [SerializeField] WeaponScript _weapon;
     [SerializeField] float _counterTime;
 
+    Parade _playerParry;
+    
     [Button]
     void TryGetConfiguration()
     {
         if(_agent == null)
             _agent = _parent.gameObject.GetComponent<NavMeshAgent>();
         if(_life == null)
-            _life = _parent.gameObject.GetComponent<LifeScript>();
+            _life = _parent.gameObject.GetComponent<LivingEntity>();
         if(_weapon == null)
             _weapon = _parent.gameObject.GetComponentInChildren<WeaponScript>();
     }
-    
-    Parade _playerParry;
     
     protected override void Start()
     {
@@ -38,6 +38,12 @@ public class EnnemiStateMachine : IStateMachine
             _weapon.CancelAttack();
             _animator.SetTrigger("Hit");
         };
+        _life.OnDeath += () =>
+        {
+            Debug.Log(_parent.gameObject.name + " was destroyed");
+            Destroy(_parent.gameObject);
+        };
+        
         UpdateSpeedAnim();
         
         // States

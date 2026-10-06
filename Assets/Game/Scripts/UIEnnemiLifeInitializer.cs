@@ -4,7 +4,7 @@ public class UIEnnemiLifeInitializer : MonoBehaviour
 {
     [Header("Configuration")]
     [SerializeField] GameObject _prefab;
-    [SerializeField] LifeScript _lifeScript;
+    [SerializeField] LivingEntity _lifeScript;
     
     RectTransform _uiParent;
     
@@ -17,5 +17,7 @@ public class UIEnnemiLifeInitializer : MonoBehaviour
         UIHealth ui = go.GetComponent<UIHealth>();
         uiScaler.Init(transform);
         ui.Init(_lifeScript);
+        
+        _lifeScript.OnDeath += () => Destroy(go);
     }
 }
