@@ -9,7 +9,7 @@ using UnityEngine.Events;
 /// </summary>
 public class FollowTransform : MonoBehaviour
 {
-    [SerializeField] Transform _target;
+    [SerializeField] Transform _targetCollider;
     [SerializeField] NavMeshAgent _agent;
     [SerializeField] float _refreshTime;
     [SerializeField] UnityEvent _onDestinationReached;
@@ -17,7 +17,7 @@ public class FollowTransform : MonoBehaviour
     bool _isStopped;
     public bool IsStopped { get => _isStopped; }
 
-    public Transform Target { get => _target; }
+    public Transform Target { get => _targetCollider; }
 
     void Reset()
     {
@@ -27,7 +27,7 @@ public class FollowTransform : MonoBehaviour
     
     void Start()
     {
-        if (_target == null || _agent == null)
+        if (_targetCollider == null || _agent == null)
         {
             Debug.LogError("FollowTransform: No target or NavMeshAgent found");
             Destroy(this);
@@ -48,12 +48,12 @@ public class FollowTransform : MonoBehaviour
     public void ResumeFollowing()
     {
         _isStopped = false;
-        _agent.SetDestination(_target.position);
+        _agent.SetDestination(_targetCollider.position);
     }
 
     public float GetDistanceToTarget()
     {
-        return (_target.position - transform.position).magnitude;
+        return (_targetCollider.position - transform.position).magnitude;
     }
     
     async void RefreshTargetAsync(CancellationToken cancel)
@@ -68,20 +68,21 @@ public class FollowTransform : MonoBehaviour
             if (_agent.isStopped)
                 _onDestinationReached?.Invoke();
             
-            _agent.SetDestination(_target.position);
+            _agent.SetDestination(_targetCollider.position);
         }
     }
 
+ 
     void OnTriggerEnter(Collider other)
     {
-        if (other.transform != _target)
+        if (other.transform != _targetCollider)
             return;
         
         StopFollowing();
     }    
     void OnTriggerExit(Collider other)
     {
-        if (other.transform != _target)
+        if (other.transform != _targetCollider)
             return;
         
         ResumeFollowing();

@@ -1,4 +1,6 @@
 using EnnemiState;
+using UnityEngine;
+
 ///// TRANSITIONS
 namespace EnnemiTransition
 {

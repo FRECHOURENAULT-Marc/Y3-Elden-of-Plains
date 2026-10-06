@@ -223,6 +223,7 @@ MonoBehaviour:
   _camera: {fileID: 0}
   _animator: {fileID: 7137706843174240617}
   _moveInput: {fileID: -1680190386980627800, guid: a68bca4fc6c74564687d909e9e5a94a5, type: 3}
+  _LookInput: {fileID: 8600699410617500620, guid: a68bca4fc6c74564687d909e9e5a94a5, type: 3}
   _jumpInput: {fileID: -2099379676528639254, guid: a68bca4fc6c74564687d909e9e5a94a5, type: 3}
   _attackInput: {fileID: 1120369429361536294, guid: a68bca4fc6c74564687d909e9e5a94a5, type: 3}
   _parryInput: {fileID: 8500952592948849214, guid: a68bca4fc6c74564687d909e9e5a94a5, type: 3}

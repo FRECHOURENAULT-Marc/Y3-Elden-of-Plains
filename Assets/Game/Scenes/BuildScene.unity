@@ -5286,22 +5286,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5628885162874620708, guid: dfd7ba1939c11894c8643e25ec032425, type: 3}
   m_PrefabInstance: {fileID: 3155899246103529566}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1340870141 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2543999709590532419, guid: 75e7c4a790ccdc24d86b6c83ae939326, type: 3}
-  m_PrefabInstance: {fileID: 2119043240}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e1601f0dd902dd4dbec2c13508c41c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LivingEntity
---- !u!4 &1340870143 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5023140047251374888, guid: 75e7c4a790ccdc24d86b6c83ae939326, type: 3}
-  m_PrefabInstance: {fileID: 2119043240}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1348137235
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5481,10 +5465,6 @@ PrefabInstance:
       propertyPath: _camera
       value: 
       objectReference: {fileID: 286231047}
-    - target: {fileID: 8650208420154028451, guid: 7154a4a44d8f72a4ea6ac555a206cd67, type: 3}
-      propertyPath: _LookInput
-      value: 
-      objectReference: {fileID: 8600699410617500620, guid: a68bca4fc6c74564687d909e9e5a94a5, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6929,6 +6909,11 @@ Transform:
 Transform:
   m_CorrespondingSourceObject: {fileID: 8034943567973428720, guid: 8f38995d95dc44240889ca65443ca042, type: 3}
   m_PrefabInstance: {fileID: 2002804574}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1659299723 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5285172246531238725, guid: 7154a4a44d8f72a4ea6ac555a206cd67, type: 3}
+  m_PrefabInstance: {fileID: 1364794200}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1686349719
 PrefabInstance:
@@ -8572,53 +8557,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f38995d95dc44240889ca65443ca042, type: 3}
---- !u!1 &2041312185
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2041312186}
-  - component: {fileID: 2041312187}
-  m_Layer: 0
-  m_Name: LifeAnchor
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2041312186
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2041312185}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1340870143}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2041312187
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2041312185}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 699fd0faab344b246ab3a0e7eb5e5d0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  _prefab: {fileID: 1448678838144806397, guid: 0c851e676d9487f4089150f6183a5ccc, type: 3}
-  _lifeScript: {fileID: 1340870141}
-  _uiParent: {fileID: 2029995014}
 --- !u!1001 &2051096857
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8894,7 +8832,11 @@ PrefabInstance:
     - target: {fileID: 3815971272919192438, guid: 75e7c4a790ccdc24d86b6c83ae939326, type: 3}
       propertyPath: _target
       value: 
-      objectReference: {fileID: 361744995}
+      objectReference: {fileID: 1659299723}
+    - target: {fileID: 3815971272919192438, guid: 75e7c4a790ccdc24d86b6c83ae939326, type: 3}
+      propertyPath: _targetCollider
+      value: 
+      objectReference: {fileID: 1659299723}
     - target: {fileID: 4367037960044583562, guid: 75e7c4a790ccdc24d86b6c83ae939326, type: 3}
       propertyPath: _playerParry
       value: 
@@ -8943,12 +8885,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ennemi
       objectReference: {fileID: 0}
+    - target: {fileID: 7080403672466322493, guid: 75e7c4a790ccdc24d86b6c83ae939326, type: 3}
+      propertyPath: _uiParent
+      value: 
+      objectReference: {fileID: 2029995014}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 5023140047251374888, guid: 75e7c4a790ccdc24d86b6c83ae939326, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2041312186}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75e7c4a790ccdc24d86b6c83ae939326, type: 3}
 --- !u!1001 &2119079575
