@@ -3,9 +3,10 @@ using UnityEngine.UI;
 
 public class UIPlayerParry : MonoBehaviour
 {
-    [SerializeField] Parade _parry;
     [SerializeField] Image _uiImage;
 
+    Parade _parry;
+    
     void Reset()
     {
         _uiImage = GetComponent<Image>();
@@ -13,6 +14,8 @@ public class UIPlayerParry : MonoBehaviour
     
     void Start()
     {
+        _parry = DependenciesInjector.PDeps.Parry;
+        
         _uiImage.enabled = false;
         
         _parry.OnParryStart += () => _uiImage.enabled = true;

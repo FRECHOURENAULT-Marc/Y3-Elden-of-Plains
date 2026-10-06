@@ -1,23 +1,38 @@
-using System.Collections.Generic;
 using UnityEngine;
-
 using EnnemiState;
 using EnnemiTransition;
+using NaughtyAttributes;
 using UnityEngine.AI;
+using Deps = DependenciesInjector;
 
 public class EnnemiStateMachine : IStateMachine
 {
+    [Header("Configuration")]
     [SerializeField] Transform _parent;
     [SerializeField] Animator _animator;
     [SerializeField] NavMeshAgent _agent;
     [SerializeField] LifeScript _life;
     [SerializeField] FollowTransform _followTransform;
     [SerializeField] WeaponScript _weapon;
-    [SerializeField] Parade _playerParry;
     [SerializeField] float _counterTime;
+
+    [Button]
+    void TryGetConfiguration()
+    {
+        if(_agent == null)
+            _agent = _parent.gameObject.GetComponent<NavMeshAgent>();
+        if(_life == null)
+            _life = _parent.gameObject.GetComponent<LifeScript>();
+        if(_weapon == null)
+            _weapon = _parent.gameObject.GetComponentInChildren<WeaponScript>();
+    }
+    
+    Parade _playerParry;
     
     protected override void Start()
     {
+        _playerParry = Deps.PDeps.Parry;
+        
         _life.OnDamaged += () => _animator.SetTrigger("Hit");
         UpdateSpeedAnim();
         

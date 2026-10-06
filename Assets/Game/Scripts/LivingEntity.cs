@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 public class LivingEntity : LifeScript
 {
@@ -18,7 +19,7 @@ public class LivingEntity : LifeScript
         bool alreadyDead = !IsAlive;
         
         base.ApplyDamage(damage);
-
+        
         if (IsAlive) return;
         if (alreadyDead) return;
         

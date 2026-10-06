@@ -99,8 +99,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6928248143644649517}
-  - component: {fileID: 5713598225050677722}
   - component: {fileID: 82189364912364867}
+  - component: {fileID: 5713598225050677722}
+  - component: {fileID: 1057542992596483600}
   - component: {fileID: 2451010609873626322}
   m_Layer: 0
   m_Name: EWeapon
@@ -123,36 +124,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2903349060858050809}
-  - {fileID: 3543980489358006204}
   m_Father: {fileID: 5023140047251374888}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!54 &5713598225050677722
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3267916146341026218}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!1773428102 &82189364912364867
 ParentConstraint:
   m_ObjectHideFlags: 0
@@ -180,6 +153,54 @@ ParentConstraint:
   m_Sources:
   - sourceTransform: {fileID: 6468615929802102703}
     weight: 1
+--- !u!54 &5713598225050677722
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3267916146341026218}
+  serializedVersion: 5
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
+--- !u!65 &1057542992596483600
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3267916146341026218}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.25, y: 2.5, z: 1}
+  m_Center: {x: 0, y: 1.25, z: 0}
 --- !u!114 &2451010609873626322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,7 +213,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d9d0e17eb41767408851461ddb74e29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponScript
-  _collider: {fileID: 4643458934054709833}
   _team: 1
   _damage: 1
   _beforeDamageTime: 0.5
@@ -298,72 +318,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &4534086619301968677
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3543980489358006204}
-  - component: {fileID: 3699583783308184517}
-  - component: {fileID: 4643458934054709833}
-  m_Layer: 0
-  m_Name: Collider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3543980489358006204
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4534086619301968677}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6928248143644649517}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3699583783308184517
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4534086619301968677}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.25, y: 2.5, z: 1}
-  m_Center: {x: 0, y: 1.25, z: 0}
---- !u!114 &4643458934054709833
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4534086619301968677}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79293607c83178544b24236b1efb7ef7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ColliderEvent
 --- !u!1 &4599594743419447266
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,7 +490,6 @@ MonoBehaviour:
   _life: {fileID: 2543999709590532419}
   _followTransform: {fileID: 3815971272919192438}
   _weapon: {fileID: 2451010609873626322}
-  _playerParry: {fileID: 0}
   _counterTime: 4
 --- !u!1 &7450600325323012948
 GameObject:
@@ -547,8 +500,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3501065146314611297}
-  - component: {fileID: 3815971272919192438}
   - component: {fileID: 2424204316940534012}
+  - component: {fileID: 3815971272919192438}
+  - component: {fileID: 2403429938720039497}
   m_Layer: 0
   m_Name: FollowTransform
   m_TagString: Untagged
@@ -571,24 +525,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 5474595317481093118}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3815971272919192438
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7450600325323012948}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 880bd662af07c4a4f8576c12e397694c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FollowTransform
-  _targetCollider: {fileID: 0}
-  _agent: {fileID: 7239750702662576618}
-  _refreshTime: 0.5
-  _onDestinationReached:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!65 &2424204316940534012
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -609,7 +545,43 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 2, z: 1}
-  m_Center: {x: 0, y: 1, z: 1}
+  m_Center: {x: 0.5, y: 1, z: 1}
+--- !u!114 &3815971272919192438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7450600325323012948}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 880bd662af07c4a4f8576c12e397694c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FollowTransform
+  _targetCollider: {fileID: 0}
+  _agent: {fileID: 7239750702662576618}
+  _refreshTime: 0.5
+  _onDestinationReached:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &2403429938720039497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7450600325323012948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a481a5afff268a142abe2d0207b3aa3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FollowPlayerTransform
+  _targetCollider: {fileID: 0}
+  _agent: {fileID: 0}
+  _refreshTime: 0.5
+  _onDestinationReached:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7662743348098521493
 GameObject:
   m_ObjectHideFlags: 0
@@ -780,7 +752,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2

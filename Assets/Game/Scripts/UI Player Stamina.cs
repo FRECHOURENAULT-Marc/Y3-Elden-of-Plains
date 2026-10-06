@@ -1,11 +1,12 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
+using Deps = DependenciesInjector;
 
 public class UIPlayerStamina : MonoBehaviour
 {
-    [SerializeField] StaminaHandler _playerStamina;
     [SerializeField] Slider _slider;
+    
+    StaminaHandler _playerStamina;
     
     void Reset()
     {
@@ -14,6 +15,8 @@ public class UIPlayerStamina : MonoBehaviour
     
     void Start()
     {
+        _playerStamina = Deps.PDeps.Stamina;
+        
         _slider.maxValue = _playerStamina.MaxStamina;
         _playerStamina.OnDrain += UpdateSlider;
         _playerStamina.OnRegen += UpdateSlider;

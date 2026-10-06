@@ -1,24 +1,10 @@
-using System;
 using Unity.Cinemachine;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
-using Object = System.Object;
+using Deps = DependenciesInjector;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("Dependencies")]
-    [SerializeField] LifeScript _life;
-    [SerializeField] StaminaHandler _stamina;
-    [SerializeField] Parade _parry;
-    [SerializeField] WeaponScript _weapon;
-    
-    [SerializeField] Transform _parent;
-    [SerializeField] Rigidbody _rb;
-    [SerializeField] CinemachineCamera _camera;
-    [SerializeField] Animator _animator;
-    
     [Header("Inputs")]
     [SerializeField] InputActionReference _moveInput;
     [SerializeField] InputActionReference _LookInput;
@@ -30,7 +16,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _jumpForce;
     [SerializeField] float _jumpEnergy;
     
+    
+    LifeScript _life;
+    StaminaHandler _stamina;
+    Parade _parry;
+    WeaponScript _weapon;
+    
+    Transform _parent;
+    Rigidbody _rb;
+    Animator _animator;
+    CinemachineCamera _camera;
     CinemachineOrbitalFollow _cameraOrbital;
+    
     bool _isGrounded;
     bool _isFreeLook;
     Vector3 _joystickDirection;
@@ -50,6 +47,16 @@ public class PlayerController : MonoBehaviour
     
     void Start()
     {
+        _life = Deps.PDeps.Life;
+        _stamina = Deps.PDeps.Stamina;
+        _parry = Deps.PDeps.Parry;
+        _weapon = Deps.PDeps.Weapon;
+        _parent = Deps.PDeps.Player.transform;
+        _rb = Deps.PDeps.Rb;
+        _animator = Deps.PDeps.Animator;
+        
+        _camera = Deps.RDeps.CinemachineCamera;
+        
         _cameraOrbital = _camera.GetComponent<CinemachineOrbitalFollow>();
         
         _moveInput.action.started += MoveUpdate;

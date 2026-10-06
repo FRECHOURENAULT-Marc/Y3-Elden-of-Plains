@@ -3,14 +3,16 @@ using UnityEngine.UI;
 
 public class UIPlayerParryReload : MonoBehaviour
 {
-    [SerializeField] Parade _parry;
     [SerializeField] RectMask2D _uiMask;
-
+    
+    Parade _parry;
     float _timer;
     float _sizeFactor;
 
     void Start()
     {
+        _parry = DependenciesInjector.PDeps.Parry;
+        
         _parry.OnParryStart += () => SetReload(0);
         _parry.OnParryEnd += () => StartTimer();
         

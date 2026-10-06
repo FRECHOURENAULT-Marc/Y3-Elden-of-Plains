@@ -1,23 +1,18 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.InputSystem;
+using Deps = DependenciesInjector;
 
 public class Parade : MonoBehaviour
 {
     [Header("Stats")]
-    //[SerializeField] float _recoveryTime;
     [SerializeField] float _recoveryTime;
     [SerializeField] float _parryTime;
     
     public event Action OnParryStart;
     public event Action OnParryEnd;
     
+    LivingEntity _entity;
     bool _isRecovering;
-    
-    [Header("Dependencies")]
-    [SerializeField] LivingEntity _entity;
 
     public float ParryTime { get => _parryTime;}
     public float RecoveryTime { get => _recoveryTime;}
@@ -35,6 +30,11 @@ public class Parade : MonoBehaviour
     {
         _recoveryTime = 1.0f;
         _parryTime = 1.0f;
+    }
+
+    void Start()
+    {
+        _entity = Deps.PDeps.Life;
     }
 
     public async void StopAttack()

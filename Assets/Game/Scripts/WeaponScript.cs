@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.InputSystem;
+using Deps = DependenciesInjector;
 
 public class WeaponScript : MonoBehaviour
 {
@@ -14,8 +14,7 @@ public class WeaponScript : MonoBehaviour
         Recovery
     }
     
-    [Header("Dependencies")]
-    [SerializeField] ColliderEvent _collider;
+    [Header("Configuration")]
     [SerializeField] LifeScript.GO_TEAM _team;
     
     [Header("Stats")]
@@ -62,21 +61,12 @@ public class WeaponScript : MonoBehaviour
     
     void Start()
     {
-        // Test if dependencies are filled
-        if(_collider == null)
-        {
-            Debug.LogError("No collider defined");
-            Destroy(this);
-            return;
-        }
-        
         _damagedEntities = new List<LifeScript>();
-        _collider.onTriggerStay += InflictDamage;
     }
 
     public void CancelAttack() => _attackCanceled = true;
     
-    void InflictDamage(Collider other)
+    void TryInflictDamageToCollider(Collider other)
     {
         if (_attackState != ATTACK_STATE.Attacking)
             return;
@@ -138,5 +128,14 @@ public class WeaponScript : MonoBehaviour
         _attackState = ATTACK_STATE.Ready;
         _damagedEntities.Clear();
         _attackCanceled = false;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        TryInflictDamageToCollider(other);
+    }    
+    void OnCollisionEnter(Collision other)
+    {
+        TryInflictDamageToCollider(other.collider);
     }
 }

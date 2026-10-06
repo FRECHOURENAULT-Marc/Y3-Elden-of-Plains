@@ -9,9 +9,9 @@ using UnityEngine.Events;
 /// </summary>
 public class FollowTransform : MonoBehaviour
 {
-    [SerializeField] Transform _targetCollider;
-    [SerializeField] NavMeshAgent _agent;
-    [SerializeField] float _refreshTime;
+    [SerializeField] protected Transform _targetCollider;
+    [SerializeField] protected NavMeshAgent _agent;
+    [SerializeField] protected float _refreshTime;
     [SerializeField] UnityEvent _onDestinationReached;
     
     bool _isStopped;
@@ -25,7 +25,7 @@ public class FollowTransform : MonoBehaviour
         _refreshTime = 0.5f;
     }
     
-    void Start()
+    protected virtual void Start()
     {
         if (_targetCollider == null || _agent == null)
         {
