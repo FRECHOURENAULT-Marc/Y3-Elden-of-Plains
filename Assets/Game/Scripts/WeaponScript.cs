@@ -103,7 +103,6 @@ public class WeaponScript : MonoBehaviour
         _onStartCharging?.Invoke();
 
         await Awaitable.WaitForSecondsAsync(_beforeDamageTime, cancel);
-
         if (cancel.IsCancellationRequested)
             return;
 
@@ -112,7 +111,6 @@ public class WeaponScript : MonoBehaviour
         _onStartAttacking?.Invoke();
 
         await Awaitable.WaitForSecondsAsync(_attackTime, cancel);
-
         if (cancel.IsCancellationRequested)
             return;
 
@@ -120,7 +118,6 @@ public class WeaponScript : MonoBehaviour
         _attackState = ATTACK_STATE.Recovery;
 
         await Awaitable.WaitForSecondsAsync(_recoveryTime, cancel);
-
         if (cancel.IsCancellationRequested)
             return;
 
@@ -129,11 +126,11 @@ public class WeaponScript : MonoBehaviour
         _attackCanceled = false;
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
         TryInflictDamageToCollider(other);
     }    
-    void OnCollisionEnter(Collision other)
+    void OnCollisionStay(Collision other)
     {
         TryInflictDamageToCollider(other.collider);
     }
