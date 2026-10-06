@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using EnnemiState;
 using EnnemiTransition;
@@ -33,19 +34,36 @@ public class EnnemiStateMachine : IStateMachine
     {
         _playerParry = Deps.PDeps.Parry;
         
-        _life.OnDamaged += () =>
-        {
-            _weapon.CancelAttack();
-            _animator.SetTrigger("Hit");
-        };
-        _life.OnDeath += () =>
-        {
-            Debug.Log(_parent.gameObject.name + " was destroyed");
-            Destroy(_parent.gameObject);
-        };
+        _life.OnDamaged += OnHit;
+        _life.OnDeath += OnDeath; //Faire apparaître un item
         
         UpdateSpeedAnim();
+
+        CreateStateMachine();
         
+        //Define first state
+        base.Start();
+    }
+
+    private void OnDestroy()
+    {
+        _life.OnDamaged -= OnHit;
+        _life.OnDeath -= OnDeath;
+    }
+
+    void OnHit()
+    {
+        _weapon.CancelAttack();
+        _animator.SetTrigger("Hit");
+    }
+    void OnDeath()
+    {
+        Debug.Log(_parent.gameObject.name + " was destroyed");
+        Destroy(_parent.gameObject);
+    }
+    
+    void CreateStateMachine()
+    {
         // States
         EnnemiState.Follow follow = new();
         EnnemiState.Attack attack = new Attack
@@ -90,11 +108,8 @@ public class EnnemiStateMachine : IStateMachine
             nextState = follow
         };
         AddState(counter, counterToFollow);
-        
-        //Define first state
-        base.Start();
     }
-
+    
     async void UpdateSpeedAnim()
     {
         while (destroyCancellationToken.IsCancellationRequested == false)
