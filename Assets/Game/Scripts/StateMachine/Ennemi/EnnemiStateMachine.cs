@@ -18,6 +18,11 @@ public class EnnemiStateMachine : IStateMachine
     [SerializeField] WeaponScript _weapon;
     [SerializeField] ItemDrop _drop;
     [SerializeField] float _counterTime;
+    [Header("Particules")]
+    [SerializeField] ParticulePlayer _counterPartPlayer;
+    [SerializeField] ParticuleData _counterPartData;    
+    [SerializeField] ParticulePlayer _despawnPartPlayer;
+    [SerializeField] ParticuleData _despawnPartData;
 
     Parade _playerParry;
     
@@ -37,7 +42,7 @@ public class EnnemiStateMachine : IStateMachine
         _playerParry = Deps.PDeps.Parry;
         
         _life.OnDamaged += OnHit;
-        _life.OnDeath += OnDeath; //Faire apparaître un item
+        _life.OnDeath += OnDeath;
         
         UpdateSpeedAnim();
 
@@ -58,11 +63,18 @@ public class EnnemiStateMachine : IStateMachine
         _weapon.CancelAttack();
         _animator.SetTrigger("Hit");
     }
-    void OnDeath()
+    async void OnDeath()
     {
-        Debug.Log(_parent.gameObject.name + " was destroyed");
+        _agent.isStopped = true;
+        _animator.SetTrigger("Death");
+        await Awaitable.WaitForSecondsAsync(2, destroyCancellationToken);
+        if (destroyCancellationToken.IsCancellationRequested)
+            return;
+        _despawnPartPlayer.PlayEffect(_despawnPartData.name);
+        
         _drop.DropItem(transform.position + Vector3.up);
         Destroy(_parent.gameObject);
+        Debug.Log(_parent.gameObject.name + " was destroyed");
     }
     
     void CreateStateMachine()
@@ -78,6 +90,8 @@ public class EnnemiStateMachine : IStateMachine
         {
             weapon = _weapon,
             anim = _animator,
+            partPlayer = _counterPartPlayer,
+            partData = _counterPartData,
             counterTime = _counterTime
         };
 

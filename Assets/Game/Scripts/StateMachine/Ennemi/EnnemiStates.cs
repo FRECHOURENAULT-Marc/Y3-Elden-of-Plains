@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using UnityEngine;
 ///// STATES
 namespace EnnemiState {
@@ -19,6 +20,8 @@ public class Counter : IState
 {
     public WeaponScript weapon;
     public Animator anim;
+    public ParticulePlayer partPlayer;
+    public ParticuleData partData;
     public float counterTime;
     private bool _isEnded;
 
@@ -30,6 +33,8 @@ public class Counter : IState
     public override void Enter()
     {
         anim.SetTrigger("Counter");
+        partPlayer.PlayEffect(partData.name, partPlayer.transform.position, partData.scale);
+        partPlayer.GetComponent<CinemachineImpulseSource>().GenerateImpulse();
         weapon.CancelAttack();
         _isEnded = false;
         HandleCounter();

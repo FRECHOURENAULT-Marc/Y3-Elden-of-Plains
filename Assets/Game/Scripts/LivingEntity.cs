@@ -25,11 +25,11 @@ public class LivingEntity : LifeScript
         OnDeath?.Invoke();
     }
     
-    public override void TryDamaging(float damage)
+    public override bool TryDamaging(float damage)
     {
-        if (IsInvincible) return;
+        if (IsInvincible) return false;
         
-        base.TryDamaging(damage);
+        return base.TryDamaging(damage);
     }
     
     public void Respawn()
