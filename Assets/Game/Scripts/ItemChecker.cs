@@ -21,10 +21,12 @@ public class ItemChecker : MonoBehaviour
             return;
         if (item == _currentItem)
             return;
-        _currentItem.Release();
-        OnTake?.Invoke(_currentItem, item);
+        if (_currentItem)
+            _currentItem.Release();
+        var oldItem = _currentItem;
         _currentItem = item;
         item.Take();
+        OnTake?.Invoke(oldItem, _currentItem);
     }
     
     // For potential input

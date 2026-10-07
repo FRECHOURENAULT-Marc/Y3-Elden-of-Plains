@@ -319,7 +319,7 @@ GameObject:
   - component: {fileID: 2102349153241159127}
   - component: {fileID: 5434607039634895172}
   m_Layer: 0
-  m_Name: Weapon
+  m_Name: SwordWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -353,21 +353,17 @@ ParentConstraint:
   m_Weight: 1
   m_TranslationAtRest: {x: 0.5, y: 0.5, z: 0}
   m_RotationAtRest: {x: 90, y: 0, z: 0}
-  m_TranslationOffsets:
-  - {x: -0.035596132, y: -0.058796942, z: 0.094652236}
-  m_RotationOffsets:
-  - {x: 0, y: -90, z: 15.240043}
+  m_TranslationOffsets: []
+  m_RotationOffsets: []
   m_AffectTranslationX: 1
   m_AffectTranslationY: 1
   m_AffectTranslationZ: 1
   m_AffectRotationX: 1
   m_AffectRotationY: 1
   m_AffectRotationZ: 1
-  m_Active: 1
-  m_IsLocked: 1
-  m_Sources:
-  - sourceTransform: {fileID: 0}
-    weight: 1
+  m_Active: 0
+  m_IsLocked: 0
+  m_Sources: []
 --- !u!54 &194234306780794034
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -391,7 +387,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
@@ -410,11 +406,11 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.5, y: 2.5, z: 1}
+  m_Size: {x: 1, y: 2.5, z: 0.5}
   m_Center: {x: 0, y: 1.25, z: 0}
 --- !u!114 &2102349153241159127
 MonoBehaviour:

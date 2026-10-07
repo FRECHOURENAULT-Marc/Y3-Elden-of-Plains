@@ -51,7 +51,6 @@ public class PlayerController : MonoBehaviour
         _ground = Deps.PDeps.GroundChecker;
         _stamina = Deps.PDeps.Stamina;
         _parry = Deps.PDeps.Parry;
-        _weapon = Deps.PDeps.ItemChecker.Item.GetComponent<WeaponScript>();
         _parent = Deps.PDeps.Player.transform;
         _rb = Deps.PDeps.Rb;
         _animator = Deps.PDeps.Animator;
@@ -96,7 +95,13 @@ public class PlayerController : MonoBehaviour
         _life.OnDamaged -= OnHit;
     }
 
-    void TakeWeapon(WeaponScript weapon) => _weapon = weapon;
+    void TakeWeapon(WeaponScript weapon)
+    {
+        _weapon = weapon;
+        Rigidbody rb = _weapon.GetComponent<Rigidbody>();
+        if (rb.isKinematic == false)
+            rb.isKinematic = true;
+    } 
     void OnTake(ItemScript old, ItemScript n)
     {
         if (n.TryGetComponent(out WeaponScript weapon))
@@ -114,10 +119,14 @@ public class PlayerController : MonoBehaviour
     void MoveStop(InputAction.CallbackContext obj) => _joystickDirection = Vector3.zero;
     void Jump(InputAction.CallbackContext obj)
     {
-        if (_weapon.IsCurrentlyAttacking)
-            return;
-        if (_parry.IsParring)
-            return;
+        if (_weapon)
+        {
+            if (_weapon.IsCurrentlyAttacking)
+                return;
+            if (_parry.IsParring)
+                return;
+        }
+
         if (_ground.IsGrounded == false)
             return;
         if (_stamina.HasStamina == false)
@@ -129,6 +138,8 @@ public class PlayerController : MonoBehaviour
     }
     void Attack(InputAction.CallbackContext obj)
     {
+        if (_weapon == null)
+            return;
         if (_weapon.IsAttackReady == false)
             return;
         if (_stamina.HasStamina == false)
@@ -140,6 +151,8 @@ public class PlayerController : MonoBehaviour
     }
     void Parry(InputAction.CallbackContext obj)
     {
+        if (_weapon == null)
+            return;
         if (_ground.IsGrounded == false)
             return;
         if (_weapon.IsCurrentlyAttacking)
@@ -168,10 +181,13 @@ public class PlayerController : MonoBehaviour
     
     void Update()
     {
-        if (_weapon.IsCurrentlyAttacking)
-            return;        
-        if (_parry.IsParring)
-            return;
+        if (_weapon)
+        {
+            if (_weapon.IsCurrentlyAttacking)
+                return;        
+            if (_parry.IsParring)
+                return;
+        }
         
         var directionFinale = _joystickDirection;
         // On récupère les axes de la cam pour les retravailler et les exploiter dans notre direction

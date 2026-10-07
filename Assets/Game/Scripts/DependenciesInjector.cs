@@ -31,6 +31,7 @@ public abstract class Dependencies
     [SerializeField] LivingEntity _life;
     [SerializeField] Animator _animator;
     [SerializeField] Collider _collider;
+    [SerializeField] GameObject _hand;
     [SerializeField] GameObject _pActions;
     [SerializeField] ItemChecker _itemChecker;
     [SerializeField] GroundChecker _ground;
@@ -42,6 +43,7 @@ public abstract class Dependencies
     public Rigidbody Rb { get => _rb; }
     public LivingEntity Life { get => _life; }
     public Animator Animator { get => _animator; }
+    public GameObject Hand { get => _hand; }
     public GameObject PActions { get => _pActions; }
     public Collider Collider { get => _collider; }
     public ItemChecker ItemChecker { get => _itemChecker; }

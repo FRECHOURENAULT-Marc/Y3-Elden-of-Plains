@@ -15,6 +15,7 @@ public class EnnemiStateMachine : IStateMachine
     [SerializeField] LivingEntity _life;
     [SerializeField] FollowTransform _followTransform;
     [SerializeField] WeaponScript _weapon;
+    [SerializeField] ItemDrop _drop;
     [SerializeField] float _counterTime;
 
     Parade _playerParry;
@@ -59,6 +60,7 @@ public class EnnemiStateMachine : IStateMachine
     void OnDeath()
     {
         Debug.Log(_parent.gameObject.name + " was destroyed");
+        _drop.DropItem(transform.position + Vector3.up);
         Destroy(_parent.gameObject);
     }
     
