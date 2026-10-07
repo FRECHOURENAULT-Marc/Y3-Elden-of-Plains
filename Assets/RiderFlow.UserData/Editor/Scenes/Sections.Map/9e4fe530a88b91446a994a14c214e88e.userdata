@@ -1,4 +1,14 @@
 {
+  "GlobalObjectId_V1-2-9e4fe530a88b91446a994a14c214e88e-779572248-0": {
+    "GameObjectId": "GlobalObjectId_V1-2-9e4fe530a88b91446a994a14c214e88e-779572248-0",
+    "SectionColorRed": 0.35,
+    "SectionColorGreen": 0.77,
+    "SectionColorBlue": 0.35,
+    "SectionAltColorRed": 0.35,
+    "SectionAltColorGreen": 0.77,
+    "SectionAltColorBlue": 0.35,
+    "RemoveSectionDuringBuild": false
+  },
   "GlobalObjectId_V1-2-9e4fe530a88b91446a994a14c214e88e-1570024921-0": {
     "GameObjectId": "GlobalObjectId_V1-2-9e4fe530a88b91446a994a14c214e88e-1570024921-0",
     "SectionColorRed": 0.35,
@@ -59,8 +69,38 @@
     "SectionAltColorBlue": 0.35,
     "RemoveSectionDuringBuild": false
   },
+  "GlobalObjectId_V1-2-9e4fe530a88b91446a994a14c214e88e-1256384420-0": {
+    "GameObjectId": "GlobalObjectId_V1-2-9e4fe530a88b91446a994a14c214e88e-1256384420-0",
+    "SectionColorRed": 0.35,
+    "SectionColorGreen": 0.77,
+    "SectionColorBlue": 0.35,
+    "SectionAltColorRed": 0.35,
+    "SectionAltColorGreen": 0.77,
+    "SectionAltColorBlue": 0.35,
+    "RemoveSectionDuringBuild": false
+  },
+  "GlobalObjectId_V1-2-9e4fe530a88b91446a994a14c214e88e-1983650995-0": {
+    "GameObjectId": "GlobalObjectId_V1-2-9e4fe530a88b91446a994a14c214e88e-1983650995-0",
+    "SectionColorRed": 0.35,
+    "SectionColorGreen": 0.35,
+    "SectionColorBlue": 0.77,
+    "SectionAltColorRed": 0.35,
+    "SectionAltColorGreen": 0.35,
+    "SectionAltColorBlue": 0.77,
+    "RemoveSectionDuringBuild": false
+  },
   "GlobalObjectId_V1-2-9e4fe530a88b91446a994a14c214e88e-1557593033-0": {
     "GameObjectId": "GlobalObjectId_V1-2-9e4fe530a88b91446a994a14c214e88e-1557593033-0",
+    "SectionColorRed": 0.77,
+    "SectionColorGreen": 0.35,
+    "SectionColorBlue": 0.35,
+    "SectionAltColorRed": 0.77,
+    "SectionAltColorGreen": 0.35,
+    "SectionAltColorBlue": 0.35,
+    "RemoveSectionDuringBuild": false
+  },
+  "GlobalObjectId_V1-2-9e4fe530a88b91446a994a14c214e88e-1136136813-0": {
+    "GameObjectId": "GlobalObjectId_V1-2-9e4fe530a88b91446a994a14c214e88e-1136136813-0",
     "SectionColorRed": 0.77,
     "SectionColorGreen": 0.35,
     "SectionColorBlue": 0.35,
