@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class UIHealth : MonoBehaviour
 {
-    [SerializeField] LifeScript _life;
+    [SerializeField] LivingEntity _life;
     [SerializeField] Slider _slider;
 
     void Reset()
@@ -12,7 +12,7 @@ public class UIHealth : MonoBehaviour
         _slider = GetComponent<Slider>();
     }
 
-    public void Init(LifeScript lifeScript)
+    public void Init(LivingEntity lifeScript)
     {
         _life = lifeScript;
     }
@@ -20,12 +20,14 @@ public class UIHealth : MonoBehaviour
     {
         _slider.maxValue = _life.MaxLife;
         _life.OnDamaged += UpdateSlider;
+        _life.OnRespawn += UpdateSlider;
         UpdateSlider();
     }
 
     void OnDestroy()
     {
         _life.OnDamaged -= UpdateSlider;
+        _life.OnRespawn -= UpdateSlider;
     }
     
     void UpdateSlider()

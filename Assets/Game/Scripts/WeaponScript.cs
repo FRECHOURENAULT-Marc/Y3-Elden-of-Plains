@@ -1,7 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.Events;
+
+[Serializable]
 
 public class WeaponScript : MonoBehaviour
 {
@@ -15,6 +18,7 @@ public class WeaponScript : MonoBehaviour
     
     [Header("Configuration")]
     [SerializeField] LifeScript.GO_TEAM _team;
+    [SerializeField] ParticuleData _hitPart;
     
     [Header("Stats")]
     [SerializeField] float _damage;
@@ -23,15 +27,12 @@ public class WeaponScript : MonoBehaviour
     [SerializeField] float _recoveryTime;
     [SerializeField] float _weight;
     
-    [Header("Events")]
-    [SerializeField] UnityEvent _onStartCharging;
-    [SerializeField] UnityEvent _onStartAttacking;
-    [SerializeField] UnityEvent _onContact;
-    
+    public event Action<Collider> OnContact;
+    public event Action<Collider> OnDamageApplied;
+    ParticulePlayer _particulePlayer;
     List<LifeScript> _damagedEntities;
-    
-    private ATTACK_STATE _attackState = ATTACK_STATE.Ready;
-    private bool _attackCanceled = false;
+    ATTACK_STATE _attackState = ATTACK_STATE.Ready;
+    bool _attackCanceled = false;
 
     public float Weight
     {
@@ -44,10 +45,6 @@ public class WeaponScript : MonoBehaviour
 
     public bool IsAttackReady =>
         _attackState == ATTACK_STATE.Ready;
-
-    public UnityEvent OnContact { get => _onContact; }
-    public UnityEvent OnStartCharging { get => _onStartCharging; }
-    public UnityEvent OnStartAttacking { get => _onStartAttacking; }
     
     void Reset()
     {
@@ -60,10 +57,18 @@ public class WeaponScript : MonoBehaviour
     
     void Start()
     {
+        _particulePlayer = GetComponent<ParticulePlayer>();
         _damagedEntities = new List<LifeScript>();
+        OnDamageApplied += SpawnHitParticules;
     }
 
     public void CancelAttack() => _attackCanceled = true;
+
+    void SpawnHitParticules(Collider other)
+    {
+        Vector3 point = other.ClosestPoint(transform.position);
+        _particulePlayer.PlayEffect(_hitPart.name, point, _hitPart.scale);
+    }
     
     void TryInflictDamageToCollider(Collider other)
     {
@@ -82,9 +87,9 @@ public class WeaponScript : MonoBehaviour
         if (life.GoTeam == _team)
             return;
 
-        _onContact?.Invoke();
-        life.TryDamaging(_damage);
-
+        OnContact?.Invoke(other);
+        if (life.TryDamaging(_damage))
+            OnDamageApplied?.Invoke(other);
         _damagedEntities.Add(life);
     }
 
@@ -100,7 +105,7 @@ public class WeaponScript : MonoBehaviour
 
         // Charging
         _attackState = ATTACK_STATE.Charging;
-        _onStartCharging?.Invoke();
+        //_onStartCharging?.Invoke();
 
         await Awaitable.WaitForSecondsAsync(_beforeDamageTime, cancel);
         if (cancel.IsCancellationRequested)
@@ -108,7 +113,7 @@ public class WeaponScript : MonoBehaviour
 
         // Attack
         _attackState = ATTACK_STATE.Attacking;
-        _onStartAttacking?.Invoke();
+        //_onStartAttacking?.Invoke();
 
         await Awaitable.WaitForSecondsAsync(_attackTime, cancel);
         if (cancel.IsCancellationRequested)

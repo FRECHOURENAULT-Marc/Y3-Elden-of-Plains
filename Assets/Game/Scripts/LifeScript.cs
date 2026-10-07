@@ -55,10 +55,11 @@ public class LifeScript : MonoBehaviour
         OnDamaged?.Invoke();
     }
     
-    public virtual void TryDamaging(float damage)
+    public virtual bool TryDamaging(float damage)
     {
-        if (IsAlive == false) return;
+        if (IsAlive == false) return false;
         
         ApplyDamage(damage);
+        return true;
     }
 }
