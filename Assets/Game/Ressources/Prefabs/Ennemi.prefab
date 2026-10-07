@@ -290,7 +290,7 @@ MonoBehaviour:
   _animator: {fileID: 8291602121449783863}
   _agent: {fileID: 7239750702662576618}
   _life: {fileID: 2543999709590532419}
-  _followTransform: {fileID: 0}
+  _followTransform: {fileID: 2403429938720039497}
   _weapon: {fileID: 1229548721559779748}
   _drop: {fileID: 8684977669933006922}
   _counterTime: 4
