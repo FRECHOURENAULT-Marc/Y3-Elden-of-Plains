@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Animations;
 
 public class UIEnnemiLifeInitializer : MonoBehaviour
 {
@@ -13,17 +12,12 @@ public class UIEnnemiLifeInitializer : MonoBehaviour
     {
         _uiParent = transform.GetChild(0).GetComponent<RectTransform>();
         
-        GameObject go = Instantiate(_prefab, _uiParent);
+        GameObject go = GameObject.Instantiate(_prefab, _uiParent);
         UIEnnemiLife uiScaler = go.GetComponent<UIEnnemiLife>();
         uiScaler.WorldAnchor = transform;
         UIHealth ui = go.GetComponent<UIHealth>();
         ui.Init(_lifeScript);
         
-        ConstraintSource cs = new ConstraintSource
-        {
-            sourceTransform = Camera.main.transform,
-            weight = 1
-        };
-        transform.GetChild(0).GetComponent<LookAtConstraint>().AddSource(cs);
+        _lifeScript.OnDeath += () => Destroy(go);
     }
 }

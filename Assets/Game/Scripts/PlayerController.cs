@@ -16,7 +16,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _jumpForce;
     [SerializeField] float _jumpEnergy;
     
-    LivingEntity _life;
+    
+    LifeScript _life;
     GroundChecker _ground;
     StaminaHandler _stamina;
     Parade _parry;
@@ -25,12 +26,10 @@ public class PlayerController : MonoBehaviour
     Transform _parent;
     Rigidbody _rb;
     Animator _animator;
-    CinemachineImpulseSource _hitImpulse;
     CinemachineCamera _camera;
     CinemachineOrbitalFollow _cameraOrbital;
     
     bool _isFreeLook;
-    bool _isDead;
     Vector3 _joystickDirection;
     float _oldVerticalAxis;
     float _oldHorizontalAxis;
@@ -55,8 +54,9 @@ public class PlayerController : MonoBehaviour
         _parent = Deps.PDeps.Player.transform;
         _rb = Deps.PDeps.Rb;
         _animator = Deps.PDeps.Animator;
-        _hitImpulse = _ground.transform.parent.GetComponentInChildren<CinemachineImpulseSource>();
+        
         _camera = Deps.RDeps.CinemachineCamera;
+        
         _cameraOrbital = _camera.GetComponent<CinemachineOrbitalFollow>();
         
         Deps.PDeps.ItemChecker.OnTake += OnTake;
@@ -75,14 +75,10 @@ public class PlayerController : MonoBehaviour
         _parryInput.action.started += Parry;
 
         _life.OnDamaged += OnHit;
-        _life.OnDeath += OnDeath;
-        _life.OnRespawn += OnRespawn;
     }
 
     void OnDestroy()
     {
-        Deps.PDeps.ItemChecker.OnTake -= OnTake;
-        
         _moveInput.action.started -= MoveUpdate;
         _moveInput.action.performed -= MoveUpdate;
         _moveInput.action.canceled -= MoveStop;
@@ -97,8 +93,6 @@ public class PlayerController : MonoBehaviour
         _parryInput.action.started -= Parry;
 
         _life.OnDamaged -= OnHit;
-        _life.OnDeath -= OnDeath;
-        _life.OnRespawn -= OnRespawn;
     }
 
     void TakeWeapon(WeaponScript weapon)
@@ -116,27 +110,6 @@ public class PlayerController : MonoBehaviour
             return;
         }
     }
-    void OnHit()
-    {
-        _hitImpulse.GenerateImpulse();
-        _animator.SetTrigger("Hit");
-    } 
-    async void OnDeath()
-    {
-        Debug.Log(_parent.gameObject.name + " was killed");
-        _isDead = true;
-        _animator.SetTrigger("Death");
-        await Awaitable.WaitForSecondsAsync(5, destroyCancellationToken);
-        if (destroyCancellationToken.IsCancellationRequested)
-            return;
-        _life.Respawn();
-    } 
-    void OnRespawn()
-    {
-        _parent.position = Deps.PDeps.PlayerSpawn.position;
-        _animator.SetTrigger("Respawn");
-        _isDead = false;
-    } 
     
     void MoveUpdate(InputAction.CallbackContext obj)
     {
@@ -146,8 +119,6 @@ public class PlayerController : MonoBehaviour
     void MoveStop(InputAction.CallbackContext obj) => _joystickDirection = Vector3.zero;
     void Jump(InputAction.CallbackContext obj)
     {
-        if (_isDead)
-            return;
         if (_weapon)
         {
             if (_weapon.IsCurrentlyAttacking)
@@ -167,8 +138,6 @@ public class PlayerController : MonoBehaviour
     }
     void Attack(InputAction.CallbackContext obj)
     {
-        if (_isDead)
-            return;
         if (_weapon == null)
             return;
         if (_weapon.IsAttackReady == false)
@@ -182,8 +151,6 @@ public class PlayerController : MonoBehaviour
     }
     void Parry(InputAction.CallbackContext obj)
     {
-        if (_isDead)
-            return;
         if (_weapon == null)
             return;
         if (_ground.IsGrounded == false)
@@ -208,15 +175,12 @@ public class PlayerController : MonoBehaviour
         _isFreeLook = false;
         _cameraOrbital.HorizontalAxis.Value = _oldHorizontalAxis;
         _cameraOrbital.VerticalAxis.Value = _oldVerticalAxis;
-    }
-
-  
+    } 
+    
+    void OnHit() => _animator.SetTrigger("Hit");
     
     void Update()
     {
-        if (_isDead)
-            return;
-        
         if (_weapon)
         {
             if (_weapon.IsCurrentlyAttacking)

@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using NaughtyAttributes;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -26,7 +28,6 @@ public abstract class Dependencies
 [Serializable] public class PlayerDependencies : Dependencies
 {
     // Fields
-    [SerializeField] Transform _playerSpawn;
     [SerializeField] Rigidbody _rb;
     [SerializeField] LivingEntity _life;
     [SerializeField] Animator _animator;
@@ -40,7 +41,6 @@ public abstract class Dependencies
     
     // Properties
     public GameObject Player { get => _mainParent; } // "rename"
-    public Transform PlayerSpawn { get => _playerSpawn; }
     public Rigidbody Rb { get => _rb; }
     public LivingEntity Life { get => _life; }
     public Animator Animator { get => _animator; }

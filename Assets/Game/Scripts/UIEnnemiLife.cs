@@ -42,16 +42,9 @@ public class UIEnnemiLife : MonoBehaviour
         }
         
         _originalScale = _uiRect.localScale;
-
-        if (_uiChildren.Count > 0)
-            return;
-        
-        for (int i = 0; i < transform.childCount; i++)
-            _uiChildren.Add(transform.GetChild(i).gameObject);
-            
     }
 
-    void Update()
+    void FixedUpdate()
     {
         float dist = Vector3.Distance(_cam.transform.position, _worldAnchor.position);
         if (dist > _showDistance)
@@ -64,7 +57,7 @@ public class UIEnnemiLife : MonoBehaviour
         foreach (GameObject uiChild in _uiChildren)
             uiChild.SetActive(true);
         
-        float scaleFactor = ((_showDistance - dist) / _showDistance) + 0.5f;
+        float scaleFactor = (_showDistance - dist + dist*0.2f) / _showDistance;
         scaleFactor = Math.Clamp(scaleFactor, 0, 1);
         
         _uiRect.localScale = _originalScale * scaleFactor;

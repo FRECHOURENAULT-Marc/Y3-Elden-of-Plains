@@ -33,7 +33,7 @@ namespace EnnemiTransition
         public override void Init()
         {
             _isCounter = false;
-            weapon.OnContact += (col) => VerifyIfCounter();
+            weapon.OnContact.AddListener(VerifyIfCounter);
         }
 
         void VerifyIfCounter()
