@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using NaughtyAttributes;
@@ -114,6 +115,31 @@ public abstract class Dependencies
     }
 }
 
+[Serializable]
+public class SerializableGameObject {
+    public string Name;
+    public GameObject GameObject;
+}
+
+[Serializable]
+public class ParticulesDependencies : Dependencies
+{
+    // Fields
+    [SerializeField] List<SerializableGameObject> _partPrefabs;
+    
+
+    public override void TryGettingFields(GameObject gameObject) {}
+
+    public GameObject GetPrefab(string name)
+    {
+        foreach(SerializableGameObject p in _partPrefabs)
+            if (p.Name == name)
+                return p.GameObject;
+        return null;
+    }
+}
+
+
 public class DependenciesInjector : MonoBehaviour
 {
     [SerializeField] PlayerDependencies _playerDeps;
@@ -129,12 +155,16 @@ public class DependenciesInjector : MonoBehaviour
     [SerializeField] UIDependencies _uiDeps;
     public static UIDependencies UIDeps;
     [Button("Get UI Dependencies")]
-    void TryGettingFieldsUI() => _uiDeps.TryGettingFieldsFromParent();
+    void TryGettingFieldsUI() => _uiDeps.TryGettingFieldsFromParent();    
+    
+    [SerializeField] ParticulesDependencies _partDeps;
+    public static ParticulesDependencies PartDeps;
     
     private void Awake()
     {
         PDeps = _playerDeps;        
         RDeps = _renderDeps;
         UIDeps = _uiDeps;
+        PartDeps = _partDeps;
     }
 }

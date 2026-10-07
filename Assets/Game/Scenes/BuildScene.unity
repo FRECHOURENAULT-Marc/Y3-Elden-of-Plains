@@ -2321,6 +2321,11 @@ MonoBehaviour:
     _playerParent: {fileID: 963811780}
     _ennemiParent: {fileID: 2029995013}
     _ennemiHealthParent: {fileID: 2029995014}
+  _partDeps:
+    _mainParent: {fileID: 0}
+    _partPrefabs:
+    - Name: BloodDir
+      GameObject: {fileID: 6823200998282874702, guid: 8f8fe12323625f5499b2853dd2ad3e58, type: 3}
 --- !u!1 &605301525
 GameObject:
   m_ObjectHideFlags: 0
@@ -5005,30 +5010,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2607077404843034015, guid: 4fbf880ef310e284099f1888c2ed58dd, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 2607077404843034015, guid: 4fbf880ef310e284099f1888c2ed58dd, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2607077404843034015, guid: 4fbf880ef310e284099f1888c2ed58dd, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 2607077404843034015, guid: 4fbf880ef310e284099f1888c2ed58dd, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2607077404843034015, guid: 4fbf880ef310e284099f1888c2ed58dd, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 2607077404843034015, guid: 4fbf880ef310e284099f1888c2ed58dd, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6196573665398916353, guid: 4fbf880ef310e284099f1888c2ed58dd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.5
