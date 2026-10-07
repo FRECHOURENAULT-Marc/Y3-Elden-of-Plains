@@ -4,6 +4,7 @@ using EnnemiState;
 using EnnemiTransition;
 using NaughtyAttributes;
 using UnityEngine.AI;
+using UnityEngine.Animations;
 using Deps = DependenciesInjector;
 
 public class EnnemiStateMachine : IStateMachine

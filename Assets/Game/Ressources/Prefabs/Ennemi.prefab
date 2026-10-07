@@ -171,6 +171,7 @@ MonoBehaviour:
   _life: {fileID: 2543999709590532419}
   _followTransform: {fileID: 3815971272919192438}
   _weapon: {fileID: 1229548721559779748}
+  _drop: {fileID: 0}
   _counterTime: 4
 --- !u!1 &7450600325323012948
 GameObject:

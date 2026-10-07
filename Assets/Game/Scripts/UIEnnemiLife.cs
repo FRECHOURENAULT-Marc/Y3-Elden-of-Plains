@@ -1,41 +1,46 @@
 using System;
 using System.Collections.Generic;
+using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UIEnnemiLife : MonoBehaviour
 {
-    [Header("Dependencies")]
-    [SerializeField] Transform _worldAnchor;
-    [SerializeField] RectTransform _uiRect;
-    [SerializeField] Camera _cam;
-    
     [Header("Configuration")]
     [SerializeField] float _showDistance;
     [SerializeField] List<GameObject> _uiChildren;
 
+    [ShowNonSerializedField] Transform _worldAnchor;
+    [ShowNonSerializedField] RectTransform _uiRect;
+    Camera _cam;
+    
+    public Transform WorldAnchor { get => _worldAnchor; set => _worldAnchor = value; }
+    
     Vector3 _originalScale;
     
     void Reset()
     {
         _uiRect = GetComponent<RectTransform>();
-        _showDistance = 30.0f;
-    }
-
-    public void Init(Transform worldAnchor)
-    {
-        _worldAnchor = worldAnchor;
+        _showDistance = 20.0f;
         _cam = Camera.main;
     }
+    
     void Start()
     {
-        if (_uiChildren == null || _uiRect == null || _worldAnchor == null)
+        if(_showDistance <= 0)
+            _showDistance = 20.0f;
+        
+        if(_cam == null)
+            _cam = Camera.main;
+        
+        if(_uiRect == null)
+            _uiRect = GetComponent<RectTransform>();
+        if (_uiRect == null || _cam == null)
         {
-            Debug.LogError("Missing dependencies for UIEnnemiLife");
-            Destroy(this);
+            Debug.LogError("UIEnnemiLife has empty requirements");
             return;
         }
-
+        
         _originalScale = _uiRect.localScale;
     }
 
@@ -56,8 +61,5 @@ public class UIEnnemiLife : MonoBehaviour
         scaleFactor = Math.Clamp(scaleFactor, 0, 1);
         
         _uiRect.localScale = _originalScale * scaleFactor;
-        
-        Vector2 screenPos= _cam.WorldToScreenPoint(_worldAnchor.position);
-        _uiRect.position = screenPos;
     }
 }

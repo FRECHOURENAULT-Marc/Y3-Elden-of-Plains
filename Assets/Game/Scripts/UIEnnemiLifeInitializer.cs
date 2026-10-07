@@ -10,12 +10,12 @@ public class UIEnnemiLifeInitializer : MonoBehaviour
     
     void Start()
     {
-        _uiParent = DependenciesInjector.UIDeps.EnnemiHealthParent;
+        _uiParent = transform.GetChild(0).GetComponent<RectTransform>();
         
         GameObject go = GameObject.Instantiate(_prefab, _uiParent);
         UIEnnemiLife uiScaler = go.GetComponent<UIEnnemiLife>();
+        uiScaler.WorldAnchor = transform;
         UIHealth ui = go.GetComponent<UIHealth>();
-        uiScaler.Init(transform);
         ui.Init(_lifeScript);
         
         _lifeScript.OnDeath += () => Destroy(go);

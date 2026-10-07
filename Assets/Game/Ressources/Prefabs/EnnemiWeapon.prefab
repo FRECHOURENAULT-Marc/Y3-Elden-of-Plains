@@ -60,9 +60,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7076246005126834064, guid: 4fbf880ef310e284099f1888c2ed58dd, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7452674225168895269, guid: 4fbf880ef310e284099f1888c2ed58dd, type: 3}
       propertyPath: m_Name
       value: EnnemiWeapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 8105517795430491080, guid: 4fbf880ef310e284099f1888c2ed58dd, type: 3}
+      propertyPath: m_Sources.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8105517795430491080, guid: 4fbf880ef310e284099f1888c2ed58dd, type: 3}
+      propertyPath: m_RotationOffsets.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8105517795430491080, guid: 4fbf880ef310e284099f1888c2ed58dd, type: 3}
+      propertyPath: m_Sources.Array.data[0].weight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8105517795430491080, guid: 4fbf880ef310e284099f1888c2ed58dd, type: 3}
+      propertyPath: m_TranslationOffsets.Array.size
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5434607039634895172, guid: 4fbf880ef310e284099f1888c2ed58dd, type: 3}
