@@ -8,6 +8,13 @@ public class ItemChecker : MonoBehaviour
     
     [SerializeField] ItemScript _currentItem;
     
+    public ItemScript Item {get => _currentItem;} 
+    
+    /// <summary>
+    /// first is old item, second is the new one
+    /// </summary>
+    public event Action<ItemScript, ItemScript> OnTake;
+    
     void HandleCollider(Collider other)
     {
         if (other.gameObject.TryGetComponent(out ItemScript item) == false)
@@ -15,6 +22,7 @@ public class ItemChecker : MonoBehaviour
         if (item == _currentItem)
             return;
         _currentItem.Release();
+        OnTake?.Invoke(_currentItem, item);
         _currentItem = item;
         item.Take();
     }

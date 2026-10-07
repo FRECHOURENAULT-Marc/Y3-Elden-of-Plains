@@ -1,4 +1,6 @@
 using System;
+using System.Linq;
+using System.Reflection;
 using NaughtyAttributes;
 using Unity.Cinemachine;
 using UnityEngine;
@@ -27,10 +29,10 @@ public abstract class Dependencies
     // Fields
     [SerializeField] Rigidbody _rb;
     [SerializeField] LivingEntity _life;
-    [SerializeField] WeaponScript _weapon;
     [SerializeField] Animator _animator;
     [SerializeField] Collider _collider;
     [SerializeField] GameObject _pActions;
+    [SerializeField] ItemChecker _itemChecker;
     [SerializeField] GroundChecker _ground;
     [SerializeField] Parade _parry;
     [SerializeField] StaminaHandler _stamina;
@@ -39,10 +41,10 @@ public abstract class Dependencies
     public GameObject Player { get => _mainParent; } // "rename"
     public Rigidbody Rb { get => _rb; }
     public LivingEntity Life { get => _life; }
-    public WeaponScript Weapon { get => _weapon; }
     public Animator Animator { get => _animator; }
     public GameObject PActions { get => _pActions; }
     public Collider Collider { get => _collider; }
+    public ItemChecker ItemChecker { get => _itemChecker; }
     public GroundChecker GroundChecker { get => _ground; }
     public Parade Parry { get => _parry; }
     public StaminaHandler Stamina { get => _stamina; }
@@ -51,7 +53,6 @@ public abstract class Dependencies
     {
         TryGetComponent(gameObject, ref _rb);
         TryGetComponent(gameObject, ref _life);
-        TryGetComponent(gameObject, ref _weapon);
         // Animator has special place
         TryGetComponent(gameObject, ref _collider);
 
@@ -59,6 +60,7 @@ public abstract class Dependencies
         TryGetComponent(_pActions, ref _parry);
         TryGetComponent(_pActions, ref _stamina);
         TryGetComponent(_pActions.transform.GetChild(0).gameObject, ref _ground);
+        TryGetComponent(_pActions.transform.GetChild(1).gameObject, ref _itemChecker);
     }
 }
 

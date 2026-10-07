@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
         _ground = Deps.PDeps.GroundChecker;
         _stamina = Deps.PDeps.Stamina;
         _parry = Deps.PDeps.Parry;
-        _weapon = Deps.PDeps.Weapon;
+        _weapon = Deps.PDeps.ItemChecker.Item.GetComponent<WeaponScript>();
         _parent = Deps.PDeps.Player.transform;
         _rb = Deps.PDeps.Rb;
         _animator = Deps.PDeps.Animator;
@@ -59,6 +59,8 @@ public class PlayerController : MonoBehaviour
         _camera = Deps.RDeps.CinemachineCamera;
         
         _cameraOrbital = _camera.GetComponent<CinemachineOrbitalFollow>();
+        
+        Deps.PDeps.ItemChecker.OnTake += OnTake;
         
         _moveInput.action.started += MoveUpdate;
         _moveInput.action.performed += MoveUpdate;
@@ -94,6 +96,16 @@ public class PlayerController : MonoBehaviour
         _life.OnDamaged -= OnHit;
     }
 
+    void TakeWeapon(WeaponScript weapon) => _weapon = weapon;
+    void OnTake(ItemScript old, ItemScript n)
+    {
+        if (n.TryGetComponent(out WeaponScript weapon))
+        {
+            TakeWeapon(weapon);
+            return;
+        }
+    }
+    
     void MoveUpdate(InputAction.CallbackContext obj)
     {
         _joystickDirection = obj.ReadValue<Vector2>();
@@ -153,7 +165,6 @@ public class PlayerController : MonoBehaviour
     } 
     
     void OnHit() => _animator.SetTrigger("Hit");
-    
     
     void Update()
     {
