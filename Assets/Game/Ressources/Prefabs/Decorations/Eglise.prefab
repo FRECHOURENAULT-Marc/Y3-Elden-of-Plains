@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7957375908651329066}
   - component: {fileID: 7382579814229382031}
   - component: {fileID: 7302388888819711543}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9158402867598463032}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Col
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,7 +158,7 @@ GameObject:
   - component: {fileID: 4161354680559308960}
   - component: {fileID: 5615129992007057143}
   - component: {fileID: 293212274462720944}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -267,7 +267,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7780945630719364076}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Eglise
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -282,7 +282,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6989806870129048615}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 49.14, y: -0.36, z: 252.49}
   m_LocalScale: {x: 1253.7499, y: 1253.7499, z: 1253.7499}
   m_ConstrainProportionsScale: 0
@@ -303,7 +303,7 @@ GameObject:
   - component: {fileID: 2571218830069339919}
   - component: {fileID: 4551991079516939449}
   - component: {fileID: 2760300579735226729}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -466,6 +466,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 675b7d3ae4af38d4a9485acc020a552d, type: 3}
       propertyPath: m_Name
       value: Temple_SecondAge_Level3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 675b7d3ae4af38d4a9485acc020a552d, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

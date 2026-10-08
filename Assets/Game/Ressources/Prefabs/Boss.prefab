@@ -128,7 +128,7 @@ ParentConstraint:
   m_TranslationAtRest: {x: 1.5889997, y: 1.3990003, z: 2.4679995}
   m_RotationAtRest: {x: 0, y: 89.999985, z: 0}
   m_TranslationOffsets:
-  - {x: -1.470005, y: 3.9899974, z: 0.18000126}
+  - {x: -1.4700046, y: 3.989994, z: 0.18000126}
   m_RotationOffsets:
   - {x: 0, y: -90, z: -90}
   m_AffectTranslationX: 1
@@ -328,8 +328,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.5, y: 2, z: 2}
-  m_Center: {x: -0.25, y: 1, z: 1.5}
+  m_Size: {x: 1.5, y: 2, z: 1.5}
+  m_Center: {x: -0.25, y: 1, z: 1.25}
 --- !u!114 &6119527851425318478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -344,6 +344,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FollowPlayerTransform
   _targetCollider: {fileID: 0}
   _agent: {fileID: 0}
+  _viewDistance: 20
   _refreshTime: 0.3
   _onDestinationReached:
     m_PersistentCalls:
@@ -707,7 +708,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LivingEntity
   _team: 1
-  _maxLife: 100
+  _maxLife: 50
 --- !u!195 &1283136687692893677
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -718,8 +719,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 1.5
-  m_Acceleration: 5
+  m_Speed: 4
+  m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 400
   m_StoppingDistance: 0
@@ -803,15 +804,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5605883699393640266, guid: 52ad9f08f4d685749b9b87046b30abfb, type: 3}
       propertyPath: m_TranslationOffsets.Array.data[0].x
-      value: 0.014745712
+      value: 0.014746308
       objectReference: {fileID: 0}
     - target: {fileID: 5605883699393640266, guid: 52ad9f08f4d685749b9b87046b30abfb, type: 3}
       propertyPath: m_TranslationOffsets.Array.data[0].y
-      value: 3.4140024
+      value: 3.4140053
       objectReference: {fileID: 0}
     - target: {fileID: 5605883699393640266, guid: 52ad9f08f4d685749b9b87046b30abfb, type: 3}
       propertyPath: m_TranslationOffsets.Array.data[0].z
-      value: 0.08227348
+      value: 0.08227301
       objectReference: {fileID: 0}
     - target: {fileID: 5605883699393640266, guid: 52ad9f08f4d685749b9b87046b30abfb, type: 3}
       propertyPath: m_Sources.Array.data[0].sourceTransform

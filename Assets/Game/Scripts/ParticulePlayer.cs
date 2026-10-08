@@ -29,8 +29,14 @@ public class ParticulePlayer : MonoBehaviour
     {
         GameObject effect = Deps.PartDeps.GetPrefab(effectName);
         if (effect == null)
+        {
+            if (effectName == "Parry")
+                Debug.Log("Parry not found");
             return;
-        
+        }
+            
+        if (effectName == "Parry")
+            Debug.Log("Parry found");
         SpawnEffect(effect, pos, scale);
     } 
 }

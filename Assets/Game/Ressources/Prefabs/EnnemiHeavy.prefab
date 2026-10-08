@@ -128,7 +128,7 @@ ParentConstraint:
   m_TranslationAtRest: {x: 1.589, y: 1.399, z: 2.468}
   m_RotationAtRest: {x: 0, y: 90, z: 0}
   m_TranslationOffsets:
-  - {x: -0.50200176, y: 1.2250004, z: -0.01099968}
+  - {x: -0.5020013, y: 1.2250061, z: -0.010999799}
   m_RotationOffsets:
   - {x: 0.00006147167, y: -90, z: -90}
   m_AffectTranslationX: 1
@@ -328,8 +328,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.5, y: 2, z: 2}
-  m_Center: {x: -0.25, y: 1, z: 1.5}
+  m_Size: {x: 1.5, y: 2, z: 1.5}
+  m_Center: {x: -0.25, y: 1, z: 1.25}
 --- !u!114 &6119527851425318478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -344,6 +344,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FollowPlayerTransform
   _targetCollider: {fileID: 0}
   _agent: {fileID: 0}
+  _viewDistance: 20
   _refreshTime: 0.3
   _onDestinationReached:
     m_PersistentCalls:
@@ -788,6 +789,14 @@ PrefabInstance:
     - target: {fileID: 1774317746898472328, guid: 52ad9f08f4d685749b9b87046b30abfb, type: 3}
       propertyPath: m_Name
       value: BattleAxe
+      objectReference: {fileID: 0}
+    - target: {fileID: 5605883699393640266, guid: 52ad9f08f4d685749b9b87046b30abfb, type: 3}
+      propertyPath: m_TranslationOffsets.Array.data[0].x
+      value: 0.016914845
+      objectReference: {fileID: 0}
+    - target: {fileID: 5605883699393640266, guid: 52ad9f08f4d685749b9b87046b30abfb, type: 3}
+      propertyPath: m_TranslationOffsets.Array.data[0].y
+      value: 1.2430115
       objectReference: {fileID: 0}
     - target: {fileID: 5605883699393640266, guid: 52ad9f08f4d685749b9b87046b30abfb, type: 3}
       propertyPath: m_Sources.Array.data[0].sourceTransform

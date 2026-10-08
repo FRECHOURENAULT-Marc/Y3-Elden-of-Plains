@@ -82,6 +82,7 @@ public class EnnemiHeavyStateMachine : IStateMachine
     void CreateStateMachine()
     {
         // States
+        EnnemiState.Idle idle = new();
         EnnemiState.Follow follow = new();
         EnnemiState.AttackHeavy attack = new AttackHeavy
         {
@@ -97,13 +98,25 @@ public class EnnemiHeavyStateMachine : IStateMachine
         };
 
         // Transitions
+        // from idle
+        IdleToFollow idleToFollow = new IdleToFollow
+        {
+            followTransform = _followTransform,
+            nextState = follow,
+        };
+        AddState(idle, idleToFollow);
         // from follow
+        FollowToIdle followToIdle = new FollowToIdle
+        {
+            followTransform = _followTransform,
+            nextState = idle
+        };
         FollowToAttack followToAtk = new FollowToAttack
         {
             followTransform = _followTransform,
             nextState = attack
         };
-        AddState(follow, followToAtk);
+        AddState(follow, followToIdle, followToAtk);
         // from atk
         AttackToFollow atkToFollow = new AttackToFollow
         {

@@ -16,6 +16,25 @@ namespace EnnemiTransition
         }
     }    
 
+    public class IdleToFollow : ITransition
+    {
+        public FollowTransform followTransform;
+    
+        public override bool Test()
+        {
+            return followTransform.IsTargetReachable;
+        }
+    }    
+    
+    public class FollowToIdle : ITransition
+    {
+        public FollowTransform followTransform;
+    
+        public override bool Test()
+        {
+            return followTransform.IsTargetReachable == false;
+        }
+    }       
     public class FollowToAttack : ITransition
     {
         public FollowTransform followTransform;

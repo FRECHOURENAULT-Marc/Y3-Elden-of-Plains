@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4407946044020206674}
   - component: {fileID: 5443686321412503098}
   - component: {fileID: 5538652511051026920}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 2748340260745674953}
   - component: {fileID: 289693852402139530}
   - component: {fileID: 1742551675943105152}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,7 +236,7 @@ GameObject:
   - component: {fileID: 7626569616771422418}
   - component: {fileID: 5784641133004700186}
   - component: {fileID: 2087424258617027080}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -345,7 +345,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8380103032304835486}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Fontaine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -381,7 +381,7 @@ GameObject:
   - component: {fileID: 1659148356914486110}
   - component: {fileID: 4474147984201953438}
   - component: {fileID: 5914527597611891700}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -490,7 +490,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3978317907486486696}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Col
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -529,7 +529,7 @@ GameObject:
   - component: {fileID: 669165471791868985}
   - component: {fileID: 879591173358073053}
   - component: {fileID: 5209236632805719434}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -680,6 +680,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: e9756a2fb51a2524886e823522e4ec43, type: 3}
       propertyPath: m_Name
       value: TownCenter_SecondAge_Level3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e9756a2fb51a2524886e823522e4ec43, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

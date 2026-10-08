@@ -11,12 +11,14 @@ public class FollowTransform : MonoBehaviour
 {
     [SerializeField] protected Transform _targetCollider;
     [SerializeField] protected NavMeshAgent _agent;
+    [SerializeField] protected float _viewDistance;
     [SerializeField] protected float _refreshTime;
     [SerializeField] UnityEvent _onDestinationReached;
     
     bool _isStopped;
     bool _isForced;
     public bool IsStopped { get => _isStopped; }
+    public bool IsTargetReachable { get => Vector3.Distance(transform.position, _targetCollider.position) < _viewDistance; }
 
     public Transform Target { get => _targetCollider; }
 
@@ -24,6 +26,7 @@ public class FollowTransform : MonoBehaviour
     {
         if(_agent ==null) _agent = GetComponent<NavMeshAgent>();
         _refreshTime = 0.5f;
+        _viewDistance = 20.0f;
     }
     
     protected virtual void Start()
@@ -49,6 +52,8 @@ public class FollowTransform : MonoBehaviour
     
     void StopFollowing()
     {
+        if (_isStopped)
+            return;
         _isStopped = true;
         _agent.ResetPath();
     }
@@ -76,6 +81,12 @@ public class FollowTransform : MonoBehaviour
             
             if (_agent.isStopped)
                 _onDestinationReached?.Invoke();
+
+            if (IsTargetReachable == false)
+            {
+                StopFollowing();
+                continue;
+            }
             
             _agent.SetDestination(_targetCollider.position);
         }
@@ -83,6 +94,13 @@ public class FollowTransform : MonoBehaviour
 
  
     void OnTriggerEnter(Collider other)
+    {
+        if (other.transform != _targetCollider)
+            return;
+        
+        StopFollowing();
+    }    
+    void OnTriggerStay(Collider other)
     {
         if (other.transform != _targetCollider)
             return;

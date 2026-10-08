@@ -3,7 +3,8 @@ using UnityEngine;
 using UnityEngine.AI;
 
 ///// STATES
-namespace EnnemiState {
+namespace EnnemiState { 
+public class Idle : IState { }
 public class Follow : IState { }
 public class Attack : IState
 {
@@ -16,6 +17,10 @@ public class Attack : IState
     public override void Enter()
     {
         followTransform.StopFollowingForce();
+    }       
+    public override void Exit()
+    {
+        followTransform.ResumeFollowing();
     }    
     
     public override void Execute()

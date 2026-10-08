@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8337647873051331776}
   - component: {fileID: 6188830254902065774}
   - component: {fileID: 8068458133844723935}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1142059377176297909}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Fort
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,7 +157,7 @@ GameObject:
   - component: {fileID: 6482824887101023408}
   - component: {fileID: 3888818120054398023}
   - component: {fileID: 1482885064421384282}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -266,7 +266,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8625371724869619050}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Col
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -306,7 +306,7 @@ GameObject:
   - component: {fileID: 7102061922530920671}
   - component: {fileID: 2027617098414294725}
   - component: {fileID: 383404162524208648}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -418,7 +418,7 @@ GameObject:
   - component: {fileID: 561248114862404960}
   - component: {fileID: 8446782718920395291}
   - component: {fileID: 578825514128818921}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -530,7 +530,7 @@ GameObject:
   - component: {fileID: 7526358927833532279}
   - component: {fileID: 4154641607565266489}
   - component: {fileID: 6633137736091445097}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -642,7 +642,7 @@ GameObject:
   - component: {fileID: 5151668515778546155}
   - component: {fileID: 8883532253464329825}
   - component: {fileID: 5333547496137379210}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -793,6 +793,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d202f10906f8a604485a7f8163c566cb, type: 3}
       propertyPath: m_Name
       value: Barracks_FirstAge_Level3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d202f10906f8a604485a7f8163c566cb, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

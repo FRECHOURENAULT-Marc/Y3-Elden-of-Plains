@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7449116683785771653}
   - component: {fileID: 9032309718452854830}
   - component: {fileID: 1050174772752544641}
+  - component: {fileID: 5865993243870182235}
   m_Layer: 0
   m_Name: SemiFreeLookCamera
   m_TagString: Untagged
@@ -29,13 +30,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1711431553763258167}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.020819785, y: 0.000000029274041, z: -6.096114e-10, w: 0.9997833}
+  m_LocalRotation: {x: 0.020820243, y: 0, z: 0, w: 0.9997833}
   m_LocalPosition: {x: 0, y: 2.25, z: -42.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 2.386, y: 0, z: 0}
 --- !u!114 &4241000450499580555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,3 +236,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7430c5ee2627c5b4a8c3cb96dc30d597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+--- !u!114 &5865993243870182235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711431553763258167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b2d199b96b516448144ab30fb26aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineImpulseListener
+  ApplyAfter: 2
+  ChannelMask: 1
+  Gain: 1
+  Use2DDistance: 0
+  UseCameraSpace: 1
+  SignalCombinationMode: 0
+  ReactionSettings:
+    m_SecondaryNoise: {fileID: 0}
+    AmplitudeGain: 1
+    FrequencyGain: 1
+    Duration: 1
+    m_NoiseOffsets: {x: 0, y: 0, z: 0}

@@ -1258,7 +1258,7 @@ ParentConstraint:
   m_TranslationAtRest: {x: 0.918731, y: 1.1439174, z: -0.058797836}
   m_RotationAtRest: {x: 90, y: 0, z: 0}
   m_TranslationOffsets:
-  - {x: -0.035598516, y: -0.058796883, z: 0.09465659}
+  - {x: -0.035600662, y: -0.058798313, z: 0.09465659}
   m_RotationOffsets:
   - {x: 0, y: -179.99997, z: 0}
   m_AffectTranslationX: 1
@@ -1414,7 +1414,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d8dad162e6b0664ead7010b2bbb2846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _lootPrefab: {fileID: 0}
+  _lootPrefab: {fileID: 2025166466480688584, guid: a3955dfd9ef524340b930153479c6972, type: 3}
 --- !u!1 &1356574586990960467
 GameObject:
   m_ObjectHideFlags: 0
@@ -1483,6 +1483,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FollowPlayerTransform
   _targetCollider: {fileID: 0}
   _agent: {fileID: 0}
+  _viewDistance: 30
   _refreshTime: 0.1
   _onDestinationReached:
     m_PersistentCalls:
@@ -2098,7 +2099,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3459780055748028207
 Transform:
   m_ObjectHideFlags: 0
