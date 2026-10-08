@@ -14,7 +14,8 @@ namespace EnnemiTransition
             return followTransform.IsStopped == false
                    && weapon.IsCurrentlyAttacking == false;
         }
-    }
+    }    
+
     public class FollowToAttack : ITransition
     {
         public FollowTransform followTransform;

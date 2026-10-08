@@ -1,21 +1,71 @@
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.AI;
+
 ///// STATES
 namespace EnnemiState {
 public class Follow : IState { }
 public class Attack : IState
 {
+    public FollowTransform followTransform;
     public WeaponScript weapon;
     public Animator anim;
 
+    protected bool _hasAttacked = false;
+    
+    public override void Enter()
+    {
+        followTransform.StopFollowingForce();
+    }    
+    
     public override void Execute()
     {
-        if(weapon.IsAttackReady)
+        if (_hasAttacked && weapon.IsRecovering)
+        {
+            _hasAttacked = false;
+            followTransform.ResumeFollowing();
+        }
+        if (weapon.IsAttackReady)
+        {
             anim.SetTrigger("Attack");
+            _hasAttacked = true;
+        }
         
         weapon.Attack();
     }
 }
+public class AttackHeavy : Attack
+{
+    public LifeScript life;
+    public ParticulePlayer partHeavyPlayer;
+    public ParticuleData partHeavyData;    
+    public ParticulePlayer partImpactPlayer;
+    public ParticuleData partImpactData;
+    public CinemachineImpulseSource impulseImpact;
+
+    public override void Execute()
+    {
+        if (life.IsAlive == false) // Destroy soon
+            return;
+        
+        if (_hasAttacked && weapon.IsRecovering)
+        {
+            impulseImpact.GenerateImpulse();
+            partImpactPlayer.PlayEffect(partImpactData.name, partImpactPlayer.transform.position, partImpactData.scale);
+            _hasAttacked = false;
+            followTransform.ResumeFollowing();
+        }
+        if (weapon.IsAttackReady)
+        {
+            partHeavyPlayer.PlayEffect(partHeavyData.name, partHeavyPlayer.transform.position, partHeavyData.scale);
+            anim.SetTrigger("Attack");
+            _hasAttacked = true;
+        }
+        
+        weapon.Attack();
+    }
+}
+
 public class Counter : IState
 {
     public WeaponScript weapon;

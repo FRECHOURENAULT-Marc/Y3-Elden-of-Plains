@@ -3,6 +3,13 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Deps = DependenciesInjector;
 
+public enum PLAYER_STATE
+{
+    Idle,
+    Dash,
+    Dead
+}
+
 public class PlayerController : MonoBehaviour
 {
     [Header("Inputs")]
@@ -11,10 +18,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] InputActionReference _jumpInput;
     [SerializeField] InputActionReference _attackInput;
     [SerializeField] InputActionReference _parryInput;
+    [SerializeField] InputActionReference _dashInput;
     [Header("Configuration")]
     [SerializeField] float _speed;
     [SerializeField] float _jumpForce;
     [SerializeField] float _jumpEnergy;
+    [SerializeField] float _dashForce;
+    [SerializeField] float _dashEnergy;
     
     LivingEntity _life;
     GroundChecker _ground;
@@ -28,9 +38,11 @@ public class PlayerController : MonoBehaviour
     CinemachineImpulseSource _hitImpulse;
     CinemachineCamera _camera;
     CinemachineOrbitalFollow _cameraOrbital;
-    
+
+    PLAYER_STATE _pState;
     bool _isFreeLook;
-    bool _isDead;
+    // bool _isDead;
+    // bool _isDashing;
     Vector3 _joystickDirection;
     float _oldVerticalAxis;
     float _oldHorizontalAxis;
@@ -44,6 +56,8 @@ public class PlayerController : MonoBehaviour
         _speed = 10f;
         _jumpForce = 1000f;
         _jumpEnergy = 20f;
+        _dashForce = 5.0f;
+        _dashEnergy = 20f;
     }
     
     void Start()
@@ -59,6 +73,8 @@ public class PlayerController : MonoBehaviour
         _camera = Deps.RDeps.CinemachineCamera;
         _cameraOrbital = _camera.GetComponent<CinemachineOrbitalFollow>();
         
+        _pState = PLAYER_STATE.Idle;
+        
         Deps.PDeps.ItemChecker.OnTake += OnTake;
         
         _moveInput.action.started += MoveUpdate;
@@ -73,6 +89,8 @@ public class PlayerController : MonoBehaviour
         _attackInput.action.started += Attack;
 
         _parryInput.action.started += Parry;
+
+        _dashInput.action.started += TryDash;
 
         _life.OnDamaged += OnHit;
         _life.OnDeath += OnDeath;
@@ -95,6 +113,8 @@ public class PlayerController : MonoBehaviour
         _attackInput.action.started -= Attack;
 
         _parryInput.action.started -= Parry;
+        
+        _dashInput.action.started -= TryDash;
 
         _life.OnDamaged -= OnHit;
         _life.OnDeath -= OnDeath;
@@ -124,7 +144,7 @@ public class PlayerController : MonoBehaviour
     async void OnDeath()
     {
         Debug.Log(_parent.gameObject.name + " was killed");
-        _isDead = true;
+        _pState = PLAYER_STATE.Dead;
         _animator.SetTrigger("Death");
         await Awaitable.WaitForSecondsAsync(5, destroyCancellationToken);
         if (destroyCancellationToken.IsCancellationRequested)
@@ -135,7 +155,7 @@ public class PlayerController : MonoBehaviour
     {
         _parent.position = Deps.PDeps.PlayerSpawn.position;
         _animator.SetTrigger("Respawn");
-        _isDead = false;
+        _pState = PLAYER_STATE.Idle;
     } 
     
     void MoveUpdate(InputAction.CallbackContext obj)
@@ -146,7 +166,7 @@ public class PlayerController : MonoBehaviour
     void MoveStop(InputAction.CallbackContext obj) => _joystickDirection = Vector3.zero;
     void Jump(InputAction.CallbackContext obj)
     {
-        if (_isDead)
+        if (_pState != PLAYER_STATE.Idle)
             return;
         if (_weapon)
         {
@@ -167,7 +187,7 @@ public class PlayerController : MonoBehaviour
     }
     void Attack(InputAction.CallbackContext obj)
     {
-        if (_isDead)
+        if (_pState != PLAYER_STATE.Idle)
             return;
         if (_weapon == null)
             return;
@@ -182,7 +202,7 @@ public class PlayerController : MonoBehaviour
     }
     void Parry(InputAction.CallbackContext obj)
     {
-        if (_isDead)
+        if (_pState != PLAYER_STATE.Idle)
             return;
         if (_weapon == null)
             return;
@@ -209,22 +229,43 @@ public class PlayerController : MonoBehaviour
         _cameraOrbital.HorizontalAxis.Value = _oldHorizontalAxis;
         _cameraOrbital.VerticalAxis.Value = _oldVerticalAxis;
     }
-
-  
-    
-    void Update()
+    void TryDash(InputAction.CallbackContext obj)
     {
-        if (_isDead)
+        if (_pState != PLAYER_STATE.Idle)
             return;
-        
+        if (_ground.IsGrounded == false)
+            return;
         if (_weapon)
         {
             if (_weapon.IsCurrentlyAttacking)
-                return;        
-            if (_parry.IsParring)
                 return;
         }
+        if (_parry.IsParring)
+            return;
+        if (_stamina.HasStamina == false)
+            return;
         
+        Dash();
+    }
+
+    async void Dash()
+    {
+        _pState = PLAYER_STATE.Dash;
+        
+        _stamina.DrainStamina(_dashEnergy);
+        float oldSpeed = _speed;
+        _speed *= _dashForce;
+        
+        await Awaitable.WaitForSecondsAsync(0.1f, destroyCancellationToken);
+        if(destroyCancellationToken.IsCancellationRequested)
+            return;
+        
+        _speed = oldSpeed;
+        _pState = PLAYER_STATE.Idle;
+    }
+
+    Vector3 ComputeDirection()
+    {
         var directionFinale = _joystickDirection;
         // On récupère les axes de la cam pour les retravailler et les exploiter dans notre direction
         if (_isFreeLook == false)
@@ -237,11 +278,32 @@ public class PlayerController : MonoBehaviour
         var r = _oldRight;
             
         // Calcul de la direction finale
-        var dir = Vector3.zero;
-        dir = (f * directionFinale.z) + (r * directionFinale.x);
+        return (f * directionFinale.z) + (r * directionFinale.x);
+    }
+    Vector3 ComputeTranslation(Vector3 dir)
+    {
+        var translation = dir * _speed;
+        return translation;
+    }
+    
+    void Update()
+    {
+        if (_pState == PLAYER_STATE.Dead)
+            return;
+        
+        if (_weapon)
+        {
+            if (_weapon.IsCurrentlyAttacking)
+                return;        
+            if (_parry.IsParring)
+                return;
+        }
+        
+        // Calcul de la direction
+        var dir = ComputeDirection();
         
         float staminaFactor = _stamina.IsExhaust ? 0.5f : 1;
-        var translation = dir * (_speed * Time.deltaTime * staminaFactor);
+        var translation = ComputeTranslation(dir) * (Time.deltaTime * staminaFactor);
         _parent.Translate(translation, Space.World);
         _animator.SetFloat("Speed", translation.normalized.magnitude * _speed);
 

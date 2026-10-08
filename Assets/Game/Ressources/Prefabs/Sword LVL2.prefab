@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2367603881899489594}
   - component: {fileID: 6844798614953635724}
   - component: {fileID: 5232119386088613212}
+  - component: {fileID: 147128191003823281}
   m_Layer: 0
   m_Name: Sword LVL2
   m_TagString: Untagged
@@ -99,13 +100,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponScript
   _team: 0
   _hitPart:
-    name: 
+    name: BloodDir
     position: {x: 0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
-  _damage: 1.5
-  _beforeDamageTime: 0.2
-  _attackTime: 0.75
-  _recoveryTime: 0.75
+    scale: {x: 5, y: 5, z: 5}
+  _damage: 2
+  _beforeDamageTime: 0.5
+  _attackTime: 1
+  _recoveryTime: 1
   _weight: 25
 --- !u!114 &6844798614953635724
 MonoBehaviour:
@@ -142,6 +143,18 @@ ParentConstraint:
   m_Active: 0
   m_IsLocked: 0
   m_Sources: []
+--- !u!114 &147128191003823281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4926645244006686233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb646d92bd671f6448cca5fca50e4400, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ParticulePlayer
 --- !u!1001 &5112330940317613168
 PrefabInstance:
   m_ObjectHideFlags: 0

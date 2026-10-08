@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 3662169570624277069}
   - component: {fileID: 5605883699393640266}
   - component: {fileID: 6767036652289860201}
-  - component: {fileID: 5504559709265582533}
+  - component: {fileID: 5951048694307817401}
+  - component: {fileID: 3958754657593139783}
   m_Layer: 0
   m_Name: BattleAxe
   m_TagString: Untagged
@@ -73,19 +74,23 @@ ParentConstraint:
   m_Enabled: 1
   serializedVersion: 2
   m_Weight: 1
-  m_TranslationAtRest: {x: 0, y: 0.823, z: 0}
-  m_RotationAtRest: {x: 0, y: 0, z: 0}
-  m_TranslationOffsets: []
-  m_RotationOffsets: []
+  m_TranslationAtRest: {x: 1.0869999, y: 1.41, z: 1.243}
+  m_RotationAtRest: {x: -90, y: 0, z: 179.99994}
+  m_TranslationOffsets:
+  - {x: 0.01691544, y: 1.243001, z: 0.098424435}
+  m_RotationOffsets:
+  - {x: 0, y: 0, z: 0}
   m_AffectTranslationX: 1
   m_AffectTranslationY: 1
   m_AffectTranslationZ: 1
   m_AffectRotationX: 1
   m_AffectRotationY: 1
   m_AffectRotationZ: 1
-  m_Active: 0
+  m_Active: 1
   m_IsLocked: 0
-  m_Sources: []
+  m_Sources:
+  - sourceTransform: {fileID: 0}
+    weight: 1
 --- !u!114 &6767036652289860201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,17 +103,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d9d0e17eb41767408851461ddb74e29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WeaponScript
-  _team: 0
+  _team: 1
   _hitPart:
-    name: 
+    name: BloodDir+
     position: {x: 0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
-  _damage: 1
-  _beforeDamageTime: 0.25
-  _attackTime: 1
-  _recoveryTime: 1
+    scale: {x: 5, y: 5, z: 5}
+  _damage: 3
+  _beforeDamageTime: 2
+  _attackTime: 0.5
+  _recoveryTime: 2
   _weight: 20
---- !u!114 &5504559709265582533
+  _heavy: 1
+--- !u!65 &5951048694307817401
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774317746898472328}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.75, y: 1, z: 0.5}
+  m_Center: {x: -0.2, y: 0.25, z: 0}
+--- !u!114 &3958754657593139783
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -117,9 +144,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1774317746898472328}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e13b2730137395443b379c2f57192378, type: 3}
+  m_Script: {fileID: 11500000, guid: eb646d92bd671f6448cca5fca50e4400, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ItemScript
+  m_EditorClassIdentifier: Assembly-CSharp::ParticulePlayer
 --- !u!1001 &7855310711248059316
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -128,6 +155,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5749365372755906232}
     m_Modifications:
+    - target: {fileID: 417134569252294082, guid: a250c778e48c73742ae531b8c9a9bd17, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7270137901465038394, guid: a250c778e48c73742ae531b8c9a9bd17, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

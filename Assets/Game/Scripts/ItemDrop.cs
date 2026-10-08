@@ -7,6 +7,8 @@ public class ItemDrop : MonoBehaviour
 
     public void DropItem(Vector3 position)
     {
+        if (_lootPrefab == null)
+            return;
         Instantiate(_lootPrefab, position, Quaternion.identity);
     }
 }

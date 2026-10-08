@@ -26,6 +26,7 @@ public class WeaponScript : MonoBehaviour
     [SerializeField] float _attackTime;
     [SerializeField] float _recoveryTime;
     [SerializeField] float _weight;
+    [SerializeField] bool _heavy;
     
     public event Action<Collider> OnContact;
     public event Action<Collider> OnDamageApplied;
@@ -42,9 +43,10 @@ public class WeaponScript : MonoBehaviour
     public bool IsCurrentlyAttacking =>
         _attackState == ATTACK_STATE.Charging ||
         _attackState == ATTACK_STATE.Attacking;
-
     public bool IsAttackReady =>
-        _attackState == ATTACK_STATE.Ready;
+        _attackState == ATTACK_STATE.Ready;    
+    public bool IsRecovering =>
+        _attackState == ATTACK_STATE.Recovery;
     
     void Reset()
     {
@@ -88,8 +90,17 @@ public class WeaponScript : MonoBehaviour
             return;
 
         OnContact?.Invoke(other);
-        if (life.TryDamaging(_damage))
+        if (_heavy)
+        {
+            life.ApplyDamage(_damage);
             OnDamageApplied?.Invoke(other);
+        }
+        else
+        {
+            if (life.TryDamaging(_damage))
+                OnDamageApplied?.Invoke(other);
+        }
+        
         _damagedEntities.Add(life);
     }
 

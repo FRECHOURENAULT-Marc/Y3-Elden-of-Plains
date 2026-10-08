@@ -3,6 +3,7 @@ using UnityEngine;
 using EnnemiState;
 using EnnemiTransition;
 using NaughtyAttributes;
+using Unity.Cinemachine;
 using UnityEngine.AI;
 using UnityEngine.Animations;
 using Deps = DependenciesInjector;
@@ -19,8 +20,10 @@ public class EnnemiStateMachine : IStateMachine
     [SerializeField] ItemDrop _drop;
     [SerializeField] float _counterTime;
     [Header("Particules")]
+    [Header("Parry")]
     [SerializeField] ParticulePlayer _counterPartPlayer;
-    [SerializeField] ParticuleData _counterPartData;    
+    [SerializeField] ParticuleData _counterPartData;  
+    [Header("Death")]
     [SerializeField] ParticulePlayer _despawnPartPlayer;
     [SerializeField] ParticuleData _despawnPartData;
 
@@ -83,6 +86,7 @@ public class EnnemiStateMachine : IStateMachine
         EnnemiState.Follow follow = new();
         EnnemiState.Attack attack = new Attack
         {
+            followTransform = _followTransform,
             weapon = _weapon,
             anim = _animator
         };

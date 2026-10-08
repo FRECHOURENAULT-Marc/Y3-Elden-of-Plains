@@ -15,6 +15,7 @@ public class FollowTransform : MonoBehaviour
     [SerializeField] UnityEvent _onDestinationReached;
     
     bool _isStopped;
+    bool _isForced;
     public bool IsStopped { get => _isStopped; }
 
     public Transform Target { get => _targetCollider; }
@@ -35,18 +36,26 @@ public class FollowTransform : MonoBehaviour
         }
         
         _isStopped = false;
+        _isForced = false;
         
         RefreshTargetAsync(destroyCancellationToken);
     }
 
-    public void StopFollowing()
+    public void StopFollowingForce()
+    {
+        _isForced = true;
+        StopFollowing();
+    }
+    
+    void StopFollowing()
     {
         _isStopped = true;
         _agent.ResetPath();
     }
-
+    
     public void ResumeFollowing()
     {
+        _isForced = false;
         _isStopped = false;
         _agent.SetDestination(_targetCollider.position);
     }
@@ -84,7 +93,9 @@ public class FollowTransform : MonoBehaviour
     {
         if (other.transform != _targetCollider)
             return;
-        
+
+        if (_isForced)
+            return;
         ResumeFollowing();
     }
 }

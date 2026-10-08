@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6638039141124925483}
   - component: {fileID: 6600631053618188702}
   - component: {fileID: 1730252092283360903}
+  - component: {fileID: 2841256828477598401}
   - component: {fileID: 6794338735458710178}
   - component: {fileID: 8829906437622716903}
   m_Layer: 0
@@ -99,14 +100,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::WeaponScript
   _team: 0
   _hitPart:
-    name: 
+    name: BloodDir
     position: {x: 0, y: 0, z: 0}
-    scale: {x: 1, y: 1, z: 1}
+    scale: {x: 3, y: 3, z: 3}
   _damage: 1
-  _beforeDamageTime: 0.25
+  _beforeDamageTime: 0.5
   _attackTime: 1
-  _recoveryTime: 1
+  _recoveryTime: 0
   _weight: 20
+--- !u!114 &2841256828477598401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025166466480688584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb646d92bd671f6448cca5fca50e4400, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ParticulePlayer
 --- !u!114 &6794338735458710178
 MonoBehaviour:
   m_ObjectHideFlags: 0
